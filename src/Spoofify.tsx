@@ -19,12 +19,12 @@ const AppWrapper = styled.div`
 
 export const Spoofify: React.FC = () => {
   return (
-    <AppWrapper>
-      <Router>
+    <Router>
+      <AppWrapper>
         <NavBar />
         <TrackContainer />
-      </Router>
-    </AppWrapper>
+      </AppWrapper>
+    </Router>
   );
 }
 
