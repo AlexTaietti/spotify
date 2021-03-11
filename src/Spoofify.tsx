@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavBar, TrackContainer } from './components';
+import { NavBar, TrackContainer, MainContainer } from './components';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 const AppWrapper = styled.div`
@@ -22,6 +22,7 @@ export const Spoofify: React.FC = () => {
     <Router>
       <AppWrapper>
         <NavBar />
+        <MainContainer />
         <TrackContainer />
       </AppWrapper>
     </Router>
