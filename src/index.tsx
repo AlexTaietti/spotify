@@ -1,11 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import Spoofify from './Spoofify';
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+
+  *, *::before, *::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  a{ text-decoration: none; }
+
+  body, html{
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  ul, ol{
+    list-style-type: none;
+  }
+
+  #root{
+    height: 100%;
+    position: relative;
+  }
+
+`;
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <GlobalStyle />
+    <Spoofify />
   </React.StrictMode>,
   document.getElementById('root')
 );
