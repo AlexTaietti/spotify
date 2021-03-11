@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import spotifyLogo from '../assets/spotify_logo.png';
 import homeIcon from '../assets/home_icon.png';
 import browseIcon from '../assets/browse_icon.png';
 import LikedIcon from '../assets/liked_songs_icon.png';
+import { NavItem } from './NavItem';
 
 const NavBarStyled = styled.div`
 
@@ -36,34 +37,6 @@ const Nav = styled.ul`
 
 `;
 
-const NavItem = styled.li`
-
-   padding: 2px;
-   display: flex;
-
-   a{
-      display: flex;
-      border-radius: 5px;
-      padding: 10px;
-      color: black;
-      width: 100%;
-      font-weight: lighter;
-      letter-spacing: -1px;
-      align-items: center;
-
-      i{ margin-right: 12px; }
-
-      img{
-         display: block;
-         height: 18px;
-      }
-
-   }
-
-   .active{ background: rgb(221, 245, 229); }
-   
-`;
-
 export const NavBar: React.FC = () => {
 
    return (
@@ -75,24 +48,9 @@ export const NavBar: React.FC = () => {
             </Link>
          </LogoContainer>
          <Nav>
-            <NavItem>
-               <NavLink activeClassName="active" exact={true} to="/">
-                  <i><img alt="home icon" src={homeIcon} /></i>
-                  <span>Home</span>
-               </NavLink>
-            </NavItem>
-            <NavItem>
-               <NavLink activeClassName="active" to="/browse">
-                  <i><img alt="browse icon" src={browseIcon} /></i>
-                  <span>Browse</span>
-               </NavLink>
-            </NavItem>
-            <NavItem>
-               <NavLink activeClassName="active" to="/liked-songs">
-                  <i><img alt="liked songs icon" src={LikedIcon} /></i>
-                  <span>Liked Songs</span>
-               </NavLink>
-            </NavItem>
+            <NavItem to='/' exact={true} linkText='Home' iconAlt='home icon' icon={homeIcon} />
+            <NavItem to='/browse' linkText='Browse' iconAlt='browse icon' icon={browseIcon} />
+            <NavItem to='/liked-songs' linkText='Liked Songs' iconAlt='Liked songs icon' icon={LikedIcon} />
          </Nav>
       </NavBarStyled>
 
