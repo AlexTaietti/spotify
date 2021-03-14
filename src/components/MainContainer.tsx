@@ -1,19 +1,22 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
+import { Home, Browse, LikedSongs } from '.';
 
 const Main = styled.div`
 
    grid-area: main;
-   width: 100%;
+   min-height: 100%;
    height: 100%;
+   width: 100%;
    position: relative;
-   display: flex;
+   display: block;
    background: #f2f7f1;
-   padding: 50px;
+   padding: 70px;
    font-size: 16px;
    font-family: sans-serif;
    font-weight: lighter;
+   overflow: scroll;
 
 `;
 
@@ -21,18 +24,10 @@ export const MainContainer: React.FC = () => {
 
    return (
       <Main>
-         <Switch>
-            <Route exact path="/">
-               <h4>Home</h4>
-            </Route>
-            <Route path="/browse">
-               <h4>Browse</h4>
-            </Route>
-            <Route path="/liked-songs">
-               <h4>Songs</h4>
-            </Route>
-         </Switch>
-      </Main>
+         <Route exact path="/" component={Home} />
+         <Route path="/browse" component={Browse} />
+         <Route path="/liked-songs" component={LikedSongs} />
+      </Main >
    );
 
 };
