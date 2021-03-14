@@ -1,12 +1,12 @@
+import { Link } from 'react-router-dom';
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
-import spotifyLogo from '../assets/spotify_logo.png';
-import homeIcon from '../assets/home_icon.png';
 import browseIcon from '../assets/browse_icon.png';
+import homeIcon from '../assets/home_icon.png';
 import LikedIcon from '../assets/liked_songs_icon.png';
 import { NavItem } from './NavItem';
+import spotifyLogo from '../assets/spotify_logo.png';
 
 const NavBarStyled = styled.div`
 

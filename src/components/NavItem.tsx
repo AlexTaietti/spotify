@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 type NavItemProps = {
    linkText: string;
-   icon: any;
+   icon: string;
    iconAlt: string;
    to: string;
    exact?: boolean;
