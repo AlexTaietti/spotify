@@ -1,12 +1,11 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 import { Home, Browse, LikedSongs } from '.';
 
 const Main = styled.div`
 
    grid-area: main;
-   min-height: 100%;
    height: 100%;
    width: 100%;
    position: relative;
@@ -16,7 +15,8 @@ const Main = styled.div`
    font-size: 16px;
    font-family: sans-serif;
    font-weight: lighter;
-   overflow: scroll;
+   overflow-y: scroll;
+   overflow-x: hidden;
 
 `;
 
