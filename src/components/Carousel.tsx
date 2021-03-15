@@ -9,10 +9,10 @@ const CarouselContainer = styled.div`
    position: relative;
    width: 100%;
 
-   h2{
-      margin-bottom: 12px;
-      font-size: 18px;
-      font-weight: normal;
+   h1{
+      margin-bottom: 25px;
+      font-size: 28px;
+      font-weight: 400;
    }
 
 `;
@@ -76,7 +76,7 @@ export const Carousel: React.FC<CarouselProps> = ({ data }) => {
 
    return (
       <CarouselContainer>
-         <h2>Recently played</h2>
+         <h1>Recently played</h1>
          <CardsContainer>
             {visiblePlaylists.map((playlistData: PlayListData) =>
                <PlaylistCard key={playlistData.playlist_id} data={playlistData} />
