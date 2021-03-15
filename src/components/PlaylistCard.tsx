@@ -15,8 +15,8 @@ type PlaylistCardProps = {
 const Card = styled.div`
 
    position: relative;
-   height: 210px;
-   text-overflow: ellipsis;
+   height: 215px;
+   flex-basis: 150px;
 
    a{
       display: inline-block;
@@ -26,7 +26,6 @@ const Card = styled.div`
 
    img{
       width: 100%;
-      max-height: 150px;
       margin-bottom: 10px;
       border-radius: 10px;
    }
@@ -34,7 +33,6 @@ const Card = styled.div`
    span{
       font-weight: bolder;
       font-size: 15px;
-      letter-sapcing: -1px;
    }
 
    p{
