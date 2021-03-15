@@ -12,32 +12,44 @@ type PlaylistCardProps = {
    data: PlayListData;
 };
 
+const FadeOverlay = styled.div`
+
+   position: absolute;
+   z-index: 1;
+   background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 79%, rgba(242,247,241,1) 100%);
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+
+`;
+
 const Card = styled.div`
 
    position: relative;
-   height: 215px;
+   height: 240px;
+   overflow: hidden;
    flex-basis: 150px;
 
    a{
       display: inline-block;
       height: 100%;
-      overflow: hidden;
    }
 
    img{
       width: 100%;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       border-radius: 10px;
    }
 
-   span{
+   h2{
       font-weight: bolder;
-      font-size: 15px;
+      font-size: 18px;
    }
 
    p{
       color: rgb(109, 109, 109);
-      font-size: 12px;
+      font-size: 14px;
    }
 
 `;
@@ -48,8 +60,9 @@ export const PlaylistCard: React.FC<PlaylistCardProps> = ({ data }) => {
       <Card id={data.playlist_id}>
          <a>
             <img src={data.image_url} />
-            <span>{data.name}</span>
+            <h2>{data.name}</h2>
             <p>{data.description}</p>
+            <FadeOverlay />
          </a>
       </Card>
    );
