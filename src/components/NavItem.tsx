@@ -18,18 +18,17 @@ const Item = styled.li`
    a{
       display: flex;
       border-radius: 5px;
-      padding: 10px;
+      padding: 15px 20px;
       color: black;
       width: 100%;
       font-weight: lighter;
-      letter-spacing: -1px;
       align-items: center;
 
-      i{ margin-right: 12px; }
+      i{ margin-right: 15px; }
 
       img{
          display: block;
-         height: 18px;
+         height: 20px;
       }
 
    }

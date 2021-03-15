@@ -2,38 +2,38 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import styled from 'styled-components';
 
-import browseIcon from '../assets/browse_icon.png';
-import homeIcon from '../assets/home_icon.png';
-import LikedIcon from '../assets/liked_songs_icon.png';
+import spotifyLogo from '../assets/images/spotify_logo.png';
+import homeIcon from '../assets/images/ui_icons/home_icon.png';
+import browseIcon from '../assets/images/ui_icons/browse_icon.png';
+import LikedIcon from '../assets/images/ui_icons/liked_songs_icon.png';
+
 import { NavItem } from './NavItem';
-import spotifyLogo from '../assets/spotify_logo.png';
 
 const NavBarStyled = styled.div`
 
    grid-area: nav-bar;
    position: relative;
-   padding: 20px 10px 10px;
-   border: 1px dotted;
+   padding: 50px 35px 10px 25px;
 
 `;
 
 const LogoContainer = styled.div`
 
-   width: 100%;
    display: block;
-   margin-bottom: 10px;
+   margin-bottom: 25px;
+   padding-left: 10px;
 
-   a{
-      display: inline-block;
-      width: 40%;
-   }
+   a{ display: inline-block; }
 
-   img{ width: 100%; }
+   img{ width: 130px; }
 
 `;
 
 const Nav = styled.ul`
+
    width: 100%;
+   font-size: 18px;
+   font-weight: 300;
 
 `;
 
