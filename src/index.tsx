@@ -3,7 +3,16 @@ import ReactDOM from 'react-dom';
 import Spoofify from './Spoofify';
 import { createGlobalStyle } from 'styled-components';
 
+import Rubik from './assets/fonts/Rubik-VariableFont_wght.ttf';
+
 const GlobalStyle = createGlobalStyle`
+
+  @font-face {
+    font-family: 'Rubik';
+    src: local('Rubik'), url(${Rubik}) format('truetype');
+    font-style: normal;
+    font-weight: 100 900;
+  }
 
   *, *::before, *::after{
     box-sizing: border-box;
