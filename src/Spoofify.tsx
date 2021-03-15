@@ -6,14 +6,14 @@ import { BrowserRouter as Router } from 'react-router-dom';
 const AppWrapper = styled.div`
 
   display: grid;
-  grid-template-areas:
-  "nav-bar main"
-  "track track";
-  grid-template-columns: 250px auto;
+  grid-template-areas: "nav-bar main"
+                       "track track";
+  grid-template-columns: 270px auto;
   grid-template-rows: auto 100px;
   position: relative;
   height: 100%;
-  font-family: sans-serif;
+  min-width: 1280px;
+  font-family: Rubik, sans-serif;
 
 `;
 
