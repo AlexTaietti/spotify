@@ -13,16 +13,14 @@ const CarouselContainer = styled.div`
       margin-bottom: 12px;
       font-size: 18px;
       font-weight: normal;
-      letter-spacing: -1px;
    }
 
 `;
 
 const CardsContainer = styled.div`
 
-   display: grid;
-   grid-gap: 25px;
-   grid-template-columns: repeat(5, 1fr);
+   display: flex;
+   justify-content: space-between;
    position: relative;
 
 `;
