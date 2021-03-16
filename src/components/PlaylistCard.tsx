@@ -16,7 +16,7 @@ const FadeOverlay = styled.div`
 
    position: absolute;
    z-index: 1;
-   background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 79%, rgba(242,247,241,1) 100%);
+   background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 85%, rgba(242,247,241,1) 100%);
    width: 100%;
    height: 100%;
    top: 0;
@@ -27,9 +27,10 @@ const FadeOverlay = styled.div`
 const Card = styled.div`
 
    position: relative;
-   height: 240px;
+   height: 230px;
    overflow: hidden;
    flex-basis: 150px;
+   user-select: none;
 
    a{
       display: inline-block;
@@ -43,12 +44,13 @@ const Card = styled.div`
    }
 
    h2{
-      font-weight: bolder;
+      font-weight: normal;
       font-size: 18px;
    }
 
    p{
       color: rgb(109, 109, 109);
+      font-weight: normal;
       font-size: 14px;
    }
 
