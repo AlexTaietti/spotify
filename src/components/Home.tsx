@@ -1,5 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Carousel } from './Carousel';
+
+const HomeWrapper = styled.div`
+
+   position: relative;
+   width: 100%;
+   min-height: 100%;
+   background: #f2f7f1;
+   padding: 100px 115px;
+
+`;
 
 export const Home: React.FC = () => {
 
@@ -68,6 +79,12 @@ export const Home: React.FC = () => {
       ]
    };
 
-   return <Carousel data={mockData.playlists} />;
+   return (
+      <HomeWrapper>
+         <Carousel title="Recently played" data={mockData.playlists} />
+         <Carousel title="Featured playlists" data={mockData.playlists} />
+         <Carousel title="Mood" data={mockData.playlists} />
+      </HomeWrapper>
+   )
 
 };
