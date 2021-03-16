@@ -33,6 +33,7 @@ const Card = styled.div`
    user-select: none;
 
    a{
+      color: #191414;
       display: inline-block;
       height: 100%;
       width: 100%;
@@ -61,8 +62,8 @@ export const PlaylistCard: React.FC<PlaylistCardProps> = ({ data }) => {
 
    return (
       <Card id={data.playlist_id}>
-         <a>
-            <img src={data.image_url} />
+         <a href="/">
+            <img alt={`${data.name} playlist cover`} src={data.image_url} />
             <h2>{data.name}</h2>
             <p>{data.description}</p>
             <FadeOverlay />
