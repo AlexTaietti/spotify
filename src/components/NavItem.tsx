@@ -19,7 +19,7 @@ const Item = styled.li`
       display: flex;
       border-radius: 5px;
       padding: 15px 20px;
-      color: black;
+      color: #191414;
       width: 100%;
       font-weight: lighter;
       align-items: center;
