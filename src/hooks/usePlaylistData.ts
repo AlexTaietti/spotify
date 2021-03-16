@@ -1,4 +1,3 @@
-import { PlayListData } from '../components/PlaylistCard';
 import { useSpotifyApi } from './useSpotifyApi';
 
 export const usePlaylistData = (playlistEndpoint: string) => {
