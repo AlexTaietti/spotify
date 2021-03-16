@@ -59,7 +59,7 @@ export const Carousel: React.FC<CarouselProps> = ({ data, title }) => {
       const playlists = data.slice(PlaylistPointer - 5, PlaylistPointer);
       setVisiblePlaylists(playlists);
 
-   }, [PlaylistPointer]);
+   }, [PlaylistPointer, data]);
 
    const showNext = () => {
 
