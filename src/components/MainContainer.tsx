@@ -1,7 +1,9 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
-import { Home, Browse, LikedSongs } from '.';
+import { Home } from './Home';
+import { Browse } from './Browse';
+import { LikedSongs } from './LikedSongs';
 
 const Main = styled.div`
 
