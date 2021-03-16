@@ -8,15 +8,17 @@ const Main = styled.div`
    grid-area: main;
    height: 100%;
    width: 100%;
-   position: relative;
-   display: block;
-   background: #f2f7f1;
-   padding: 70px;
-   font-size: 16px;
-   font-family: sans-serif;
-   font-weight: lighter;
    overflow-y: scroll;
    overflow-x: hidden;
+
+   &::-webkit-scrollbar { width: 12px; }
+
+   &::-webkit-scrollbar-track { background: #fafafa; }
+
+   &::-webkit-scrollbar-thumb {
+      background-color: #c1c1c1;
+      border-radius: 20px;
+   }
 
 `;
 
