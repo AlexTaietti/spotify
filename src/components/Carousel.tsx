@@ -15,6 +15,8 @@ const CarouselContainer = styled.div`
       font-weight: 400;
    }
 
+   &:not(:last-of-type){ margin-bottom: 50px; }
+
 `;
 
 const CardsContainer = styled.div`
@@ -43,10 +45,11 @@ const Controls = styled.div`
 `;
 
 type CarouselProps = {
+   title: string;
    data: Array<PlayListData>;
 }
 
-export const Carousel: React.FC<CarouselProps> = ({ data }) => {
+export const Carousel: React.FC<CarouselProps> = ({ data, title }) => {
 
    const [visiblePlaylists, setVisiblePlaylists] = useState<PlayListData[]>([]);
    const [PlaylistPointer, setPlaylistPointer] = useState(5); //first 5 playlists
@@ -76,7 +79,7 @@ export const Carousel: React.FC<CarouselProps> = ({ data }) => {
 
    return (
       <CarouselContainer>
-         <h1>Recently played</h1>
+         <h1>{title}</h1>
          <CardsContainer>
             {visiblePlaylists.map((playlistData: PlayListData) =>
                <PlaylistCard key={playlistData.playlist_id} data={playlistData} />
