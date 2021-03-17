@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { Carousel } from './Carousel';
 import { usePlaylistData } from '../hooks/usePlaylistData';
@@ -15,7 +14,7 @@ const HomeWrapper = styled.div`
 
 export const Home: React.FC = () => {
 
-   //get playlists from respective api endpoints (this works but doesn't feel correct, any suggestions welcome pls)
+   //get playlists from respective api endpoints
    const recentlyPlayed = usePlaylistData('recently_played_playlists?limit=10');
    const featured = usePlaylistData('featured_playlists?limit=10');
    const mood = usePlaylistData('mood_playlists?limit=10');
