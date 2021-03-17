@@ -1,14 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-type NavItemProps = {
-   linkText: string;
-   icon: string;
-   iconAlt: string;
-   to: string;
-   exact?: boolean;
-}
-
 const Item = styled.li`
 
    padding: 2px;
@@ -35,6 +27,14 @@ const Item = styled.li`
    .active{ background: rgb(221, 245, 229); }
    
 `;
+
+type NavItemProps = {
+   linkText: string;
+   icon: string;
+   iconAlt: string;
+   to: string;
+   exact?: boolean;
+}
 
 export const NavItem: React.FC<NavItemProps> = ({ linkText, to, icon, iconAlt, exact = false }) => {
 
