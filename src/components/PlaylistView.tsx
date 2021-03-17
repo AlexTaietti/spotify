@@ -1,14 +1,15 @@
-//import { useState } from 'react';
-//import { useLocation } from 'react-router';
-//import { useSpotifyApi } from '../hooks/useSpotifyApi';
+import { useLocation } from 'react-router';
+import { useSpotifyApi } from '../hooks/useSpotifyApi';
 
-//type PlaylistLocationState = { id: string; }
+type PlaylistLocationState = { id: string; }
 
 export const PlaylistView: React.FC = () => {
 
-   //const { state: locationState } = useLocation<PlaylistLocationState>();
+   const { state: locationState } = useLocation<PlaylistLocationState>();
 
-   //const playlistInfo = useSpotifyApi(`/get_playlist_tracks/${locationState.id}`);
+   const playlistInfo = useSpotifyApi(`/playlist_tracks/${locationState.id}`);
+
+   console.log(playlistInfo);
 
    return <h1>Helloooooo!</h1>;
 
