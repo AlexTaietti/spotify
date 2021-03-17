@@ -3,17 +3,6 @@ import styled from 'styled-components';
 import { formatSlug } from '../helpers/utils';
 import { Link } from 'react-router-dom';
 
-export type PlayListData = {
-   description: string;
-   image_url: string;
-   name: string;
-   playlist_id: string;
-};
-
-type PlaylistCardProps = {
-   data: PlayListData;
-};
-
 const FadeOverlay = styled.div`
 
    position: absolute;
@@ -59,6 +48,17 @@ const Card = styled.div`
    }
 
 `;
+
+export type PlayListData = {
+   description: string;
+   image_url: string;
+   name: string;
+   playlist_id: string;
+};
+
+type PlaylistCardProps = {
+   data: PlayListData;
+};
 
 export const PlaylistCard: React.FC<PlaylistCardProps> = ({ data }) => {
 
