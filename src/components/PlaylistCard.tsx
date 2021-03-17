@@ -1,5 +1,7 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { formatSlug } from '../helpers/utils';
+import { Link } from 'react-router-dom';
 
 export type PlayListData = {
    description: string;
@@ -60,14 +62,27 @@ const Card = styled.div`
 
 export const PlaylistCard: React.FC<PlaylistCardProps> = ({ data }) => {
 
+   const [playlistSlug, setPlaylistSlug] = useState<string>();
+
+   useEffect(() => {
+
+      const slug = formatSlug(data.name);
+
+      setPlaylistSlug(slug);
+
+   }, [data]);
+
    return (
       <Card id={data.playlist_id}>
-         <a href="/">
+         <Link to={{
+            pathname: `/playlist/${playlistSlug}`,
+            state: { id: data.playlist_id }
+         }}>
             <img alt={`${data.name} playlist cover`} src={data.image_url} />
             <h2>{data.name}</h2>
             <p>{data.description}</p>
             <FadeOverlay />
-         </a>
+         </Link>
       </Card>
    );
 
