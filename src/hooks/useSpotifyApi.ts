@@ -1,16 +1,14 @@
 import { useState, useEffect } from 'react';
-import { PlayListData } from '../components/PlaylistCard';
 import { axiosInstance } from '../helpers/utils';
 
-type playListResponse = {
-   playlists: Array<PlayListData>
+type ApiResponse<T> = {
+   response: T | undefined;
+   error: boolean;
 }
 
-type apiResponse = playListResponse | undefined;
+export function useSpotifyApi<DataType>(endpoint: string): ApiResponse<DataType> {
 
-export const useSpotifyApi = (endpoint: string) => {
-
-   const [response, setResponse] = useState<apiResponse>();
+   const [response, setResponse] = useState<DataType>();
    const [error, setError] = useState(false);
 
    useEffect(() => {
