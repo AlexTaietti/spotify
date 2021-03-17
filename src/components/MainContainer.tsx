@@ -1,9 +1,9 @@
-import React from 'react';
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 import { Home } from './Home';
 import { Browse } from './Browse';
 import { LikedSongs } from './LikedSongs';
+import { PlaylistView } from './PlaylistView';
 
 const Main = styled.div`
 
@@ -31,6 +31,7 @@ export const MainContainer: React.FC = () => {
          <Route exact path="/" component={Home} />
          <Route path="/browse" component={Browse} />
          <Route path="/liked-songs" component={LikedSongs} />
+         <Route path="/playlist/:plylistName" component={PlaylistView} />
       </Main >
    );
 
