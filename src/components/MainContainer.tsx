@@ -11,7 +11,6 @@ const Main = styled.div`
    background: #f2f7f1;
    height: 100%;
    width: 100%;
-   overflow-y: scroll;
    overflow-x: hidden;
 
    &::-webkit-scrollbar { width: 12px; }
