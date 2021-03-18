@@ -11,7 +11,7 @@ const CarouselContainer = styled.div`
 
    h1{
       margin-bottom: 25px;
-      font-size: 28px;
+      font-size: 2.8rem;
       font-weight: 400;
    }
 
@@ -33,7 +33,7 @@ const Controls = styled.div`
    position: absolute;
    top: -40px;
    right: 0px;
-   font-size: 30px;
+   font-size: 3rem;
    color: rgba(0, 0, 0, 0.4);
    cursor: pointer;
    user-select: none;

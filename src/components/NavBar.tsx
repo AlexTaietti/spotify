@@ -31,7 +31,7 @@ const LogoContainer = styled.div`
 const Nav = styled.ul`
 
    width: 100%;
-   font-size: 18px;
+   font-size: 1.8rem;
    font-weight: 300;
 
 `;
