@@ -7,7 +7,6 @@ const HomeWrapper = styled.div`
    position: relative;
    width: 100%;
    min-height: 100%;
-   background: #f2f7f1;
    padding: 100px 115px;
 
 `;

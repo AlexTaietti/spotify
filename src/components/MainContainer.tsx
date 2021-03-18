@@ -8,6 +8,7 @@ import { PlaylistView } from './PlaylistView';
 const Main = styled.div`
 
    grid-area: main;
+   background: #f2f7f1;
    height: 100%;
    width: 100%;
    overflow-y: scroll;
