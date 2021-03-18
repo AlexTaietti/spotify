@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import spotifyLogo from '../assets/images/spotify_logo.png';
+import sprinttLogo from '../assets/images/sprintt_logo.png';
 import homeIcon from '../assets/images/ui_icons/home_icon.png';
 import browseIcon from '../assets/images/ui_icons/browse_icon.png';
 import LikedIcon from '../assets/images/ui_icons/liked_songs_icon.png';
@@ -19,12 +19,12 @@ const NavBarStyled = styled.div`
 const LogoContainer = styled.div`
 
    display: block;
-   margin-bottom: 25px;
-   padding-left: 10px;
+   margin-bottom: 7px;
+   padding-left: 20px;
 
    a{ display: inline-block; }
 
-   img{ width: 130px; }
+   img{ width: 100px; }
 
 `;
 
@@ -43,7 +43,7 @@ export const NavBar: React.FC = () => {
       <NavBarStyled>
          <LogoContainer>
             <Link to="/">
-               <img alt="spotify logo" src={spotifyLogo} />
+               <img alt="spotify logo" src={sprinttLogo} />
             </Link>
          </LogoContainer>
          <Nav>
