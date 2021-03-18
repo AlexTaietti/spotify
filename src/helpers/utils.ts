@@ -5,4 +5,4 @@ export const axiosInstance = axios.create({
    headers: { 'user-access-token': process.env.REACT_APP_SPOTIFY_TOKEN }
 });
 
-export const formatSlug = (s: string) => s.replace(/\s/g, '-');
+export const formatSlug = (s: string) => s.toLowerCase().replace(/\s/g, '-');
