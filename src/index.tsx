@@ -23,6 +23,8 @@ const GlobalStyle = createGlobalStyle`
 
   a{ text-decoration: none; }
 
+  html{ font-size: 16px; }
+
   body, html{
     height: 100%;
     overflow: hidden;
