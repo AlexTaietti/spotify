@@ -18,7 +18,6 @@ const Card = styled.div`
 
    a{
       color: #191414;
-      width: 100%;
    }
 
    img{
@@ -29,13 +28,16 @@ const Card = styled.div`
 
    h2{
       font-weight: normal;
-      font-size: 18px;
+      font-size: 1.8rem;
+      line-height: 2rem;
+      margin-bottom: 5px;
    }
 
    p{
       color: rgb(109, 109, 109);
       font-weight: normal;
-      font-size: 14px;
+      font-size: 1.4rem;
+      line-height: 1.6rem;
    }
 
 `;
