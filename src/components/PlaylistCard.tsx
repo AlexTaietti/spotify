@@ -37,7 +37,7 @@ const Card = styled.div`
       color: rgb(109, 109, 109);
       font-weight: normal;
       font-size: 1.4rem;
-      line-height: 1.6rem;
+      line-height: 1.9rem;
    }
 
 `;
