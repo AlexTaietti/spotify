@@ -69,7 +69,12 @@ export const PlaylistCard: React.FC<PlaylistCardProps> = ({ data }) => {
       <Card id={data.playlist_id}>
          <Link to={{
             pathname: `/playlist/${playlistSlug}`,
-            state: { id: data.playlist_id }
+            state: {
+               id: data.playlist_id,
+               image: data.image_url,
+               name: data.name,
+               description: data.description
+            }
          }}>
             <img alt={`${data.name} playlist cover`} src={data.image_url} />
             <h2>{data.name}</h2>
