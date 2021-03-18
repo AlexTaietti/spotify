@@ -23,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
 
   a{ text-decoration: none; }
 
-  html{ font-size: 16px; }
+  html{ font-size: 10px; }
 
   body, html{
     height: 100%;
