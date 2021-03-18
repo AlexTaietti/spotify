@@ -3,30 +3,21 @@ import styled from 'styled-components';
 import { formatSlug } from '../helpers/utils';
 import { Link } from 'react-router-dom';
 
-const FadeOverlay = styled.div`
-
-   position: absolute;
-   z-index: 1;
-   background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 85%, rgba(242,247,241,1) 100%);
-   width: 100%;
-   height: 100%;
-   top: 0;
-   left: 0;
-
-`;
-
 const Card = styled.div`
 
    position: relative;
-   height: 230px;
-   overflow: hidden;
-   flex-basis: 150px;
+   width: 17%;
+   min-width: 150px;
+   max-width: 200px;
    user-select: none;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 4;
+   white-space: normal;
+   overflow: hidden;
 
    a{
       color: #191414;
-      display: inline-block;
-      height: 100%;
       width: 100%;
    }
 
@@ -81,7 +72,6 @@ export const PlaylistCard: React.FC<PlaylistCardProps> = ({ data }) => {
             <img alt={`${data.name} playlist cover`} src={data.image_url} />
             <h2>{data.name}</h2>
             <p>{data.description}</p>
-            <FadeOverlay />
          </Link>
       </Card>
    );
