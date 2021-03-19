@@ -1,13 +1,13 @@
 import React from 'react';
 import { useLocation } from 'react-router';
-import { useSpotifyApi } from '../hooks/useSpotifyApi';
 import styled from 'styled-components';
 import { PlaylistHeader } from './PlaylistHeader';
 import { Filter } from './Filter';
 import { Songs } from './Songs';
+import { useTracks } from '../hooks/useTracks';
 
 type PlaylistLocationState = {
-   id: string;
+   id: number;
    image: string;
    name: string;
    description: string;
@@ -23,7 +23,7 @@ export type SongData = {
    track_id: number;
 }
 
-type PlaylistInfoObject = {
+export type PlaylistInfoObject = {
    playlist_duration: string;
    playlist_tracks: number;
    tracks: Array<SongData>;
@@ -53,24 +53,26 @@ export const PlaylistView: React.FC = () => {
 
    const { state: locationState } = useLocation<PlaylistLocationState>();
 
-   const { response: playlistInfo } = useSpotifyApi<PlaylistInfoObject>(`playlist_tracks/${locationState.id}`);
+   const { playlistInfo, displayedSongs, setFilter } = useTracks(locationState.id);
 
    return (
+
       <PlaylistViewWrapper>
 
-         { playlistInfo && //use a fragment just so I can conditionally render even in case of failed fetch attempt
+         { (playlistInfo && displayedSongs) && //use a fragment just so I can conditionally render even in case of failed fetch attempt
 
             <>
                <PlaylistHeader imageUrl={locationState.image} name={locationState.name} description={locationState.description} songNumber={playlistInfo.tracks.length} duration={playlistInfo.playlist_duration} />
                <SongsSection>
-                  <Filter />
-                  <Songs songs={playlistInfo.tracks} />
+                  <Filter setFilter={setFilter} />
+                  <Songs songs={displayedSongs} />
                </SongsSection>
             </>
 
          }
 
       </PlaylistViewWrapper>
+
    );
 
 };

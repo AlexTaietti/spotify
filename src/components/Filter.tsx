@@ -1,5 +1,5 @@
 import { InputType } from 'node:zlib';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import magnifier from '../assets/images/ui_icons/magnifier.png';
 
@@ -24,15 +24,9 @@ const FilterInputWrapper = styled.div.attrs(props => ({ role: 'search' }))`
 
 `;
 
-export const Filter: React.FC = () => {
+export const Filter: React.FC<{ setFilter: React.Dispatch<React.SetStateAction<string>> }> = ({ setFilter }) => {
 
-   const [filter, setFilter] = useState();
-
-   const handleChange = (inputText: string) => {
-
-      //sift through playlists song and set state of parent component...
-
-   }
+   const handleChange = (inputText: string) => setFilter(inputText);
 
    return (
       <FilterInputWrapper>
