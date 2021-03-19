@@ -57,6 +57,7 @@ export const PlaylistView: React.FC = () => {
 
    return (
       <PlaylistViewWrapper>
+
          { playlistInfo && //use a fragment just so I can conditionally render even in case of failed fetch attempt
 
             <>
@@ -68,6 +69,7 @@ export const PlaylistView: React.FC = () => {
             </>
 
          }
+
       </PlaylistViewWrapper>
    );
 
