@@ -41,7 +41,7 @@ const PlaylistViewWrapper = styled.div`
 const SongsSection = styled.section`
 
    position: relative;
-   padding: 0 115px;
+   padding: 0 50px 0 150px;
    display: block;
    min-height: 100%;
    min-width: 100%;
