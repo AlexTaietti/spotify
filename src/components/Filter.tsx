@@ -29,9 +29,7 @@ export const Filter: React.FC<{ setFilter: React.Dispatch<React.SetStateAction<s
 
    return (
       <FilterInputWrapper>
-         <button aria-label='filter'>
-            <i><img alt='magnifier icon' src={magnifier} /></i>
-         </button>
+         <i><img alt='magnifier icon' src={magnifier} /></i>
          <input onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event.target.value)} placeholder="Filter" type='text' aria-label="songs filter" />
       </FilterInputWrapper >
    );
