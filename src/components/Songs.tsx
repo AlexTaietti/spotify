@@ -50,9 +50,10 @@ const SongRow = styled.tr`
       overflow: hidden;
       white-space: nowrap;
       border-bottom: .5px solid #646464;
-      transition: background .5s;
+      transition: background .3s;
 
       img{
+         transition: opacity .3s;
          width: 100%;
          cursor: pointer;
          display: block;
@@ -61,9 +62,13 @@ const SongRow = styled.tr`
       &:first-of-type, &:last-of-type{ border-bottom: none; }
 
       &:first-of-type{
+         
          padding: 0 20px 0 24px;
          border-top-left-radius: 10px;
          border-bottom-left-radius: 10px;
+
+         img{ opacity: 0; }
+
       }
 
       &:nth-of-type(2){ padding-left: 0 12px; }
@@ -76,8 +81,17 @@ const SongRow = styled.tr`
    }
 
    &:hover{
+      
       cursor: pointer;
-      td { background: rgba(29, 185, 84, 0.2); }
+      
+      td {
+         
+         background: rgba(29, 185, 84, 0.2);
+         
+         &:first-of-type{ img{ opacity: 1; } }
+      
+      }
+   
    }
 
 `;
@@ -92,16 +106,17 @@ export const Songs: React.FC<SongsProps> = ({ songs }) => {
       <SongsTable>
          <TableHeadings>
             <tr>
-               <th></th>
-               <th></th>
+               <th>{ /* playstate icon column header */}</th>
+               <th>{ /* heart icon column header */}</th>
                <th>title</th>
                <th>artist</th>
                <th>album</th>
                <th>release date</th>
-               <th></th>
+               <th>{ /* empty column used as padding */}</th>
             </tr>
          </TableHeadings>
          <tbody>
+
             {songs.map(song =>
 
                <SongRow key={song.track_id}>
@@ -111,10 +126,11 @@ export const Songs: React.FC<SongsProps> = ({ songs }) => {
                   <td>{song.artists_names}</td>
                   <td>{song.album_name}</td>
                   <td>{song.release_date}</td>
-                  <td></td>
+                  <td>{ /* empty column used as padding */}</td>
                </SongRow>
 
             )}
+
          </tbody>
       </SongsTable>
    );
