@@ -4,7 +4,7 @@ type Action = any;
 
 type Dispatch = (action: Action) => void
 
-type State = { [prop: string]: any };
+type State = any | undefined;
 
 type PlaybackProviderProps = { children: React.ReactNode }
 
@@ -20,7 +20,7 @@ function playbackReducer(state: State, action: Action) {
 
       case 'increment': {
 
-         return { count: state.count + 1 }
+         return {}
 
       }
 
@@ -36,9 +36,9 @@ function playbackReducer(state: State, action: Action) {
 
 function CountProvider({ children }: PlaybackProviderProps) {
 
-   const [state, dispatch] = React.useReducer(playbackReducer, { count: 0 });
+   const [state, dispatch] = React.useReducer(playbackReducer, {});
 
-   const value = { state, dispatch }
+   const value = { state, dispatch };
 
    return (
 
