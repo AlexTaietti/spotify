@@ -7,6 +7,7 @@ const TrackWrapper = styled.div`
    position: relative;
    display: flex;
    justify-content: space-between;
+   box-shadow: 0 0 5px #F1F1F1;
    
 `;
 
