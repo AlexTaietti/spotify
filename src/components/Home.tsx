@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Carousel } from './Carousel';
-import { usePlaylistData } from '../hooks/usePlaylistData';
+import { usePlaylistData } from '../state/hooks/usePlaylistData';
 
 const HomeWrapper = styled.div`
 

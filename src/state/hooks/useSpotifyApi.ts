@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { axiosInstance } from '../helpers/utils';
+import { axiosInstance } from '../../helpers/utils';
 
 type ApiResponse<T> = {
    response: T | undefined;

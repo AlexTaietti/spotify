@@ -1,5 +1,4 @@
-import { InputType } from 'node:zlib';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import magnifier from '../assets/images/ui_icons/magnifier.png';
 

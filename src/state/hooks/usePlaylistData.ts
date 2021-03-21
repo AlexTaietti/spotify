@@ -1,5 +1,5 @@
 import { useSpotifyApi } from './useSpotifyApi';
-import { PlayListData } from '../components/PlaylistCard';
+import { PlayListData } from '../../components/PlaylistCard';
 
 type playlistHomeData = {
    playlists: Array<PlayListData>

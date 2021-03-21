@@ -31,7 +31,7 @@ export const MainContainer: React.FC = () => {
          <Route exact path="/" component={Home} />
          <Route path="/browse" component={Browse} />
          <Route path="/liked-songs" component={LikedSongs} />
-         <Route path="/playlist/:plylistName" component={PlaylistView} />
+         <Route path="/playlist/:playlistName" component={PlaylistView} />
       </Main >
    );
 

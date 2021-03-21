@@ -18,6 +18,7 @@ const AppWrapper = styled.div`
 `;
 
 export const Spoofify: React.FC = () => {
+
   return (
     <Router>
       <AppWrapper>

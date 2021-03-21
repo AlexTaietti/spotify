@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { PlaylistHeader } from './PlaylistHeader';
 import { Filter } from './Filter';
 import { Songs } from './Songs';
-import { useTracks } from '../hooks/useTracks';
+import { useTracks } from '../state/hooks/useTracks';
 
 type PlaylistLocationState = {
    id: number;
@@ -41,7 +41,7 @@ const PlaylistViewWrapper = styled.div`
 const SongsSection = styled.section`
 
    position: relative;
-   padding: 0 50px 0 150px;
+   padding: 0 50px 35px 150px;
    display: block;
    min-height: 100%;
    min-width: 100%;
