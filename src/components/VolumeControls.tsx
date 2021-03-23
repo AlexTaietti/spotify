@@ -1,0 +1,43 @@
+import React from "react";
+import styled from 'styled-components';
+import volumeIcon from '../assets/images/ui_icons/volume_icon.png';
+import { VariableBar } from "./VariableBar";
+
+type VolumeProps = {
+   volume: number;
+   handleVolume?: (volume: number) => void;
+}
+
+
+const VolumeContainer = styled.div`
+
+   display: flex;
+   height: 100%;
+   margin-right: 3%;
+   align-items: center;
+   justify-content: center;
+
+   i{
+
+      display: inline-block;
+      width: 20px;
+      margin-right: 12px;
+      cursor: pointer;
+
+      img{ width: 100%; }
+
+   }
+
+`;
+
+export const VolumeControls: React.FC<VolumeProps> = ({ volume }) => {
+
+   return (
+      <VolumeContainer>
+         <i><img alt='volume icon' src={volumeIcon} /></i>
+         <VariableBar width='110px' value={volume} />
+      </VolumeContainer>
+
+   );
+
+};

@@ -9,7 +9,6 @@ type AlbumDataProps = {
 const AlbumDataContainer = styled.div`
 
    height: 100%;
-   position: relative;
    display: flex;
 
    img{
