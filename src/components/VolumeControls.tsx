@@ -3,12 +3,6 @@ import styled from 'styled-components';
 import volumeIcon from '../assets/images/ui_icons/volume_icon.png';
 import { VariableBar } from "./VariableBar";
 
-type VolumeProps = {
-   volume: number;
-   handleVolume?: (volume: number) => void;
-}
-
-
 const VolumeContainer = styled.div`
 
    display: flex;
@@ -29,6 +23,10 @@ const VolumeContainer = styled.div`
    }
 
 `;
+
+type VolumeProps = {
+   volume: number;
+}
 
 export const VolumeControls: React.FC<VolumeProps> = ({ volume }) => {
 

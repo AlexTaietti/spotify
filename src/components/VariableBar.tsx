@@ -1,17 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-type VariableBarProps = {
-   value: number;
-   width: string;
-   callback?: (value: number) => void;
-};
-
-type BarProps = {
-   width: string;
-   value: number;
-};
-
 const Bar = styled.div`
 
    display: block;
@@ -35,6 +24,17 @@ const Bar = styled.div`
    
 
 `;
+
+type VariableBarProps = {
+   value: number;
+   width: string;
+   callback?: (value: number) => void;
+};
+
+type BarProps = {
+   width: string;
+   value: number;
+};
 
 export const VariableBar: React.FC<VariableBarProps> = ({ value, width, callback }) => {
 

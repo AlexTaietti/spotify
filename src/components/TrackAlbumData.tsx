@@ -1,11 +1,5 @@
 import styled from 'styled-components';
 
-type AlbumDataProps = {
-   image: string;
-   song: string;
-   artist: string;
-}
-
 const AlbumDataContainer = styled.div`
 
    height: 100%;
@@ -39,6 +33,12 @@ const AlbumDataContainer = styled.div`
    }
 
 `;
+
+type AlbumDataProps = {
+   image: string;
+   song: string;
+   artist: string;
+}
 
 export const AlbumData: React.FC<AlbumDataProps> = ({ image, song, artist }) => {
 
