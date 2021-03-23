@@ -35,10 +35,13 @@ const Controls = styled.div`
    right: 0px;
    font-size: 3rem;
    color: rgba(0, 0, 0, 0.4);
-   cursor: pointer;
+   cursor: not-allowed;
    user-select: none;
 
-   span.active{ color: rgba(0, 0, 0, 1); }
+   span.active{
+      cursor: pointer;
+      color: rgba(0, 0, 0, 1);
+   }
 
    span:last-of-type{ margin-left: 10px; }
 

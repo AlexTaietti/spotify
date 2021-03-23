@@ -10,22 +10,21 @@ const Header = styled.div`
    position: sticky;
    top: 0;
    justify-content: space-between;
-   align-items: center;
+   align-items: start;
    height: 220px;
    width: 100%;
    background: url(${(props: StyledHeaderProps) => props.imageUrl});
    background-repeat: no-repeat;
    background-size: cover;
-   padding: 0 100px;
+   padding: 80px 100px 0;
    margin-bottom: 30px;
    z-index: 1;
 
    .info-container{
 
-      padding-top: 15px;
       color: #f1f1f1;
       z-index: 1;
-      max-width: 50%;
+      max-width: 65%;
 
       h1, h2{
          font-weight: normal;
@@ -37,6 +36,8 @@ const Header = styled.div`
       h2{ font-size: 1.8rem; }
 
       &:nth-of-type(2){
+
+         max-width: 35%;
          
          h1{
             

@@ -6,13 +6,12 @@ import { PlaystateIcon } from './PlaystateIcon';
 const SongsTable = styled.table`
 
    width: 100%;
-   max-width: 100%;
    text-align: left;
    border-collapse: collapse;
    table-layout: fixed;
-   font-size: 2.2rem;
+   font-size: 1.9rem;
    color: #191414;
-   margin-left: -60px;
+   margin-left: -70px; /* making up for the first "invisible" column and keeping the table centered */
 
 `;
 
@@ -24,14 +23,17 @@ const TableHeadings = styled.thead`
       font-weight: 300;
       padding: 8px 10px;
       border-bottom: 1px solid #646464;
+      white-space: nowrap;
+      width: 25%;
 
-      &:first-of-type{ width: 70px }
+      &:first-of-type{  /* width of the playstate icon's column */
+         width: 70px;
+         border-bottom: none;
+      }
       
-      &:nth-of-type(2){ width: 48px; }
+      &:nth-of-type(2){ width: 48px; } /* width of the heart icon's column */
 
-      &:last-of-type{ width: 8px; }
-
-      &:first-of-type, &:last-of-type{ border-bottom: none; }
+      &:nth-of-type(3){ width: 30%; } /* width of the song names column */
 
    }
 
@@ -39,8 +41,7 @@ const TableHeadings = styled.thead`
 
 const SongRow = styled.tr`
 
-   width: 100%;
-   border-radius: 10px;
+   cursor: pointer;
 
    td{
 
@@ -53,42 +54,56 @@ const SongRow = styled.tr`
       transition: background .3s;
 
       img{
-         transition: opacity .3s;
          width: 100%;
-         cursor: pointer;
          display: block;
       }
-
-      &:first-of-type, &:last-of-type{ border-bottom: none; }
 
       &:first-of-type{
          
          padding: 0 20px 0 24px;
          border-top-left-radius: 10px;
          border-bottom-left-radius: 10px;
+         border-bottom: none;
 
-         img{ opacity: 0; }
+         img{
+            transition: opacity .3s;
+            opacity: 0;
+         }
 
       }
 
       &:nth-of-type(2){ padding-left: 0 12px; }
 
       &:last-of-type{
-         border-top-right-radius: 10px;
-         border-bottom-right-radius: 10px;
+         
+         position: relative;
+         overflow: visible;
+
+         &:after{
+            content: '';
+            transition: inherit;
+            position: absolute;
+            width: 8px;
+            height: 100%;
+            top: 0;
+            right: -8px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+         }
+
       }
 
    }
 
    &:hover{
       
-      cursor: pointer;
-      
       td {
-         
+
          background: rgba(29, 185, 84, 0.2);
-         
-         &:first-of-type{ img{ opacity: 1; } }
+
+         &:first-of-type img{ opacity: 1; }
+
+         &::after{ background: rgba(29, 185, 84, 0.2); }
       
       }
    
@@ -112,7 +127,6 @@ export const Songs: React.FC<SongsProps> = ({ songs }) => {
                <th>artist</th>
                <th>album</th>
                <th>release date</th>
-               <th>{ /* empty column used as padding */}</th>
             </tr>
          </TableHeadings>
          <tbody>
@@ -126,7 +140,6 @@ export const Songs: React.FC<SongsProps> = ({ songs }) => {
                   <td>{song.artists_names}</td>
                   <td>{song.album_name}</td>
                   <td>{song.release_date}</td>
-                  <td>{ /* empty column used as padding */}</td>
                </SongRow>
 
             )}
