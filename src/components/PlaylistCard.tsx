@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { formatSlug } from '../helpers/utils';
+import { formatSlug, getResource } from '../helpers/utils';
 import { Link } from 'react-router-dom';
+import { playlistContextData, usePlayback } from '../state/PlaybackContext';
 
 const Card = styled.div`
 
@@ -16,11 +17,10 @@ const Card = styled.div`
    white-space: normal;
    overflow: hidden;
 
-   a{
-      color: #191414;
-   }
+   a{ color: #191414; }
 
    img{
+      cursor: pointer;
       width: 100%;
       margin-bottom: 15px;
       border-radius: 10px;
@@ -46,7 +46,7 @@ export type PlayListData = {
    description: string;
    image_url: string;
    name: string;
-   playlist_id: string;
+   playlist_id: number;
 };
 
 type PlaylistCardProps = {
@@ -57,6 +57,8 @@ export const PlaylistCard: React.FC<PlaylistCardProps> = ({ data }) => {
 
    const [playlistSlug, setPlaylistSlug] = useState<string>();
 
+   const { dispatch } = usePlayback();
+
    useEffect(() => {
 
       const slug = formatSlug(data.name);
@@ -65,8 +67,25 @@ export const PlaylistCard: React.FC<PlaylistCardProps> = ({ data }) => {
 
    }, [data]);
 
+   const handleClick = async (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
+
+      const playlistDetails = await getResource<playlistContextData>(`playlist_tracks/${data.playlist_id}`);
+
+      const playlistContextData = {
+         id: data.playlist_id,
+         tracks: playlistDetails.tracks,
+         image: data.image_url
+      };
+
+      dispatch({ type: 'SET_PLAYLIST', playlist: playlistContextData });
+
+      dispatch({ type: 'SET_SONG', song: playlistContextData.tracks[0] });
+
+   }
+
    return (
-      <Card id={data.playlist_id}>
+      <Card>
+         <img onClick={handleClick} alt={`${data.name} playlist cover`} src={data.image_url} />
          <Link to={{
             pathname: `/playlist/${playlistSlug}`,
             state: {
@@ -76,7 +95,6 @@ export const PlaylistCard: React.FC<PlaylistCardProps> = ({ data }) => {
                description: data.description
             }
          }}>
-            <img alt={`${data.name} playlist cover`} src={data.image_url} />
             <h2>{data.name}</h2>
             <p>{data.description}</p>
          </Link>

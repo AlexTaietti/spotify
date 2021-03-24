@@ -3,16 +3,9 @@ import ReactDOM from 'react-dom';
 import Spoofify from './Spoofify';
 import { createGlobalStyle } from 'styled-components';
 
-import Rubik from './assets/fonts/Rubik-VariableFont_wght.ttf';
+import './style/global-font.css'; //keep @font-face in a separate file to avoid flickering in chrome (https://github.com/styled-components/styled-components/issues/2205)
 
 const GlobalStyle = createGlobalStyle`
-
-  @font-face {
-    font-family: 'Rubik';
-    src: local('Rubik'), url(${Rubik}) format('truetype');
-    font-style: normal;
-    font-weight: 100 900;
-  }
 
   *, *::before, *::after{
     box-sizing: border-box;
@@ -31,9 +24,7 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
   }
 
-  ul, ol{
-    list-style-type: none;
-  }
+  ul, ol{ list-style-type: none; }
 
   #root{
     height: 100%;

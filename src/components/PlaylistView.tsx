@@ -5,6 +5,7 @@ import { PlaylistHeader } from './PlaylistHeader';
 import { Filter } from './Filter';
 import { Songs } from './Songs';
 import { useTracks } from '../state/hooks/useTracks';
+import { usePlayback } from '../state/PlaybackContext';
 
 type PlaylistLocationState = {
    id: number;
@@ -55,17 +56,40 @@ export const PlaylistView: React.FC = () => {
 
    const { playlistInfo, displayedSongs, setFilter } = useTracks(locationState.id);
 
+   const { state, dispatch } = usePlayback();
+
+   const updateSong = async (song: SongData) => {
+
+      if ((playlistInfo && playlistInfo.tracks) && state?.song !== song) {
+
+         const playlistContextData = {
+            id: locationState.id,
+            tracks: playlistInfo.tracks,
+            image: locationState.image
+         };
+
+         dispatch({ type: 'SET_PLAYLIST', playlist: playlistContextData });
+         dispatch({ type: 'SET_SONG', song: song });
+
+         if (!state?.audio) dispatch({ type: 'PLAY' });
+
+      }
+
+   };
+
    return (
 
       <PlaylistViewWrapper>
 
-         { (playlistInfo && displayedSongs) && //use a fragment just so I can conditionally render even in case of failed fetch attempt
+         {
+
+            (playlistInfo && displayedSongs) && //use a fragment just so I can conditionally render even in case of failed fetch attempt
 
             <>
                <PlaylistHeader imageUrl={locationState.image} name={locationState.name} description={locationState.description} songNumber={playlistInfo.tracks.length} duration={playlistInfo.playlist_duration} />
                <SongsSection>
                   <Filter setFilter={setFilter} />
-                  <Songs songs={displayedSongs} />
+                  <Songs updateSong={updateSong} songs={displayedSongs} />
                </SongsSection>
             </>
 

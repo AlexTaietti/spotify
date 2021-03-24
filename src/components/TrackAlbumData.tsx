@@ -35,21 +35,25 @@ const AlbumDataContainer = styled.div`
 `;
 
 type AlbumDataProps = {
-   image: string;
-   song: string;
-   artist: string;
+   image?: string;
+   song?: string;
+   artist?: string;
 }
 
 export const AlbumData: React.FC<AlbumDataProps> = ({ image, song, artist }) => {
 
    return (
-      <AlbumDataContainer>
-         <img alt='playlist thumbnail' src={image} />
-         <div>
-            <span>{song}</span>
-            <span>{artist}</span>
-         </div>
-      </AlbumDataContainer>
+
+      (image && song && artist) ?
+
+         <AlbumDataContainer>
+            <img alt='playlist thumbnail' src={image} />
+            <div>
+               <span>{song}</span>
+               <span>{artist}</span>
+            </div>
+         </AlbumDataContainer> : null
+
    );
 
 };

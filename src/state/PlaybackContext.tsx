@@ -1,44 +1,75 @@
-import React, { useState, useReducer } from 'react';
+import React, { useReducer } from 'react';
+import { SongData } from '../components/PlaylistView';
 
-type Action = any;
+export type playlistContextData = {
+   id: number;
+   tracks: Array<SongData>;
+   image: string;
+}
 
-type Dispatch = (action: Action) => void
+type Action = { type: 'SET_PLAYLIST', playlist: playlistContextData } | { type: 'SET_SONG', song: any } | { type: 'PAUSE' } | { type: 'PLAY' };
 
-type State = any | undefined;
+type PlaybackDispatch = (action: Action) => void
 
-type PlaybackProviderProps = { children: React.ReactNode }
+type PlaybackState = {
+
+   playlist?: playlistContextData;
+
+   song?: SongData;
+
+   audio?: boolean;
+
+} | undefined;
+
+type PlaybackProviderProps = { children: React.ReactNode };
 
 const PlaybackContext = React.createContext<
 
-   { state: State; dispatch: Dispatch } | undefined
+   { state: PlaybackState; dispatch: PlaybackDispatch } | undefined
 
 >(undefined);
 
-function playbackReducer(state: State, action: Action) {
+const playbackReducer = (state: PlaybackState, action: Action): PlaybackState => {
 
    switch (action.type) {
 
-      case 'increment': {
+      case 'SET_SONG':
+         return {
+            ...state,
+            song: action.song
+         }
 
-         return {}
+      case 'SET_PLAYLIST':
+         return {
+            ...state,
+            playlist: action.playlist
+         }
 
-      }
+      case 'PLAY':
+         return {
+            ...state,
+            audio: true
+         }
+
+      case 'PAUSE':
+         return {
+            ...state,
+            audio: false
+         }
 
       default: {
-
-         throw new Error(`Unhandled action type: ${action.type}`)
-
+         return state;
       }
 
    }
 
 }
 
-function CountProvider({ children }: PlaybackProviderProps) {
+function PlaybackProvider({ children }: PlaybackProviderProps) {
 
-   const [state, dispatch] = React.useReducer(playbackReducer, {});
+   const [playbackState, playbackDispatch] = useReducer(playbackReducer, { playlist: undefined, song: undefined, audio: false });
 
-   const value = { state, dispatch };
+   const value = { state: playbackState, dispatch: playbackDispatch };
 
    return (
 
@@ -56,10 +87,10 @@ function usePlayback() {
 
    const context = React.useContext(PlaybackContext);
 
-   if (context === undefined) throw new Error('useCount must be used within a CountProvider');
+   if (context === undefined) throw new Error('usePlayback must be used within a PlaybackProvider');
 
-   return context
+   return context;
 
 }
 
-export { CountProvider, usePlayback };
+export { PlaybackProvider, usePlayback };

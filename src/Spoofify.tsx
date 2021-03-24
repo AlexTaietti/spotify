@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavBar, TrackContainer, MainContainer } from './components';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { PlaybackProvider } from './state/PlaybackContext';
 
 const AppWrapper = styled.div`
 
@@ -22,9 +23,11 @@ export const Spoofify: React.FC = () => {
   return (
     <Router>
       <AppWrapper>
-        <NavBar />
-        <MainContainer />
-        <TrackContainer />
+        <PlaybackProvider>
+          <NavBar />
+          <MainContainer />
+          <TrackContainer />
+        </PlaybackProvider>
       </AppWrapper>
     </Router>
   );

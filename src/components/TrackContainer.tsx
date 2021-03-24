@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { usePlayback } from '../state/PlaybackContext';
 import { AlbumData } from './TrackAlbumData';
 import { TrackControls } from './TrackControls';
 import { VolumeControls } from './VolumeControls';
@@ -14,22 +15,20 @@ const TrackWrapper = styled.div`
 
 export const TrackContainer: React.FC = () => {
 
-   const mockSongData = {
-      image: 'http://api.sprintt.co/spotify/images/pop/p_9.jpg',
-      songName: 'Square One',
-      artist: 'Coldplay',
-      progress: {
-         elapsed: '0:40',
-         duration: '4:23'
-      },
-      volume: 50
+   const { state } = usePlayback();
+
+   const progress = {
+      elapsed: '0:40',
+      duration: '4:23'
    };
+
+   const volume = 50;
 
    return (
       <TrackWrapper>
-         <AlbumData song={mockSongData.songName} artist={mockSongData.artist} image={mockSongData.image} />
-         <TrackControls progress={mockSongData.progress} />
-         <VolumeControls volume={mockSongData.volume} />
+         <AlbumData song={state?.song?.name} artist={state?.song?.artists_names} image={state?.playlist?.image} />
+         <TrackControls playing={state?.audio} progress={progress} />
+         <VolumeControls volume={volume} />
       </TrackWrapper>
    );
 

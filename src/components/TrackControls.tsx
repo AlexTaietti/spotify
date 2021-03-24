@@ -2,7 +2,7 @@ import React from "react";
 import styled from 'styled-components';
 import { BackIcon } from './BackIcon';
 import { NextIcon } from './NextIcon';
-//import { PauseIcon } from './PauseIcon'; not needed for now...
+import { PauseIcon } from "./PauseIcon";
 import { PlayIcon } from './PlayIcon';
 import { VariableBar } from './VariableBar';
 
@@ -68,17 +68,19 @@ type TrackControlsProps = {
    progress: {
       elapsed: string;
       duration: string;
-   }
+   },
+
+   playing?: boolean
 
 };
 
-export const TrackControls: React.FC<TrackControlsProps> = ({ progress }) => {
+export const TrackControls: React.FC<TrackControlsProps> = ({ progress, playing }) => {
 
    return (
       <ControlsContainer>
          <Controls>
             <BackIcon />
-            <PlayIcon />
+            {playing ? <PauseIcon /> : <PlayIcon />}
             <NextIcon />
          </Controls>
          <Progress>
