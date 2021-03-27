@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Bar = styled.div`
@@ -10,6 +10,7 @@ const Bar = styled.div`
    width: ${(props: BarProps) => props.width};
    background: #C4C4C4;
    cursor: pointer;
+   overflow: hidden;
 
    &::after{
       content: '';
@@ -28,7 +29,7 @@ const Bar = styled.div`
 type VariableBarProps = {
    value: number;
    width: string;
-   callback?: (value: number) => void;
+   callback?: (value: number) => any | React.Dispatch<React.SetStateAction<number>>;
 };
 
 type BarProps = {
@@ -38,22 +39,18 @@ type BarProps = {
 
 export const VariableBar: React.FC<VariableBarProps> = ({ value, width, callback }) => {
 
-   const [displayedValue, setDisplayedValue] = useState(value);
-
    const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 
       const clickOffset = event.clientX;
-      const barOffset = (event.target as HTMLDivElement).offsetLeft;
+      const barOffset = (event.target as HTMLDivElement).getBoundingClientRect().left;
       const barWidth = (event.target as HTMLDivElement).offsetWidth;
 
       const newValue = (clickOffset - barOffset) * 100 / barWidth;
 
       if (callback) callback(newValue);
 
-      setDisplayedValue(newValue);
-
    };
 
-   return <Bar onClick={handleClick} width={width} value={displayedValue} />;
+   return <Bar onClick={handleClick} width={width} value={value} />;
 
 };

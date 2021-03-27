@@ -16,3 +16,49 @@ export const getResource: <T>(url: string) => Promise<T> = async (url) => {
       });
 
 };
+
+export const notifySongApi = (playlistID: number, songID: number) => {
+
+   const url = `notify_played/${playlistID}/${songID}`;
+
+   axiosInstance.post(url);
+
+};
+
+const getEncryptedToken = (token: string) => {
+
+   let date = new Date();
+
+   let utcTime = `${date.getUTCHours()}:${date.getUTCMinutes()}:${date.getUTCSeconds()}`
+
+   let stringToEncrypt = `${token}===${utcTime}`
+
+   return btoa(stringToEncrypt)
+
+};
+
+export const makeSongUrl = (id: number) => {
+
+   if (!process.env.REACT_APP_SPOTIFY_TOKEN) throw new Error("api token not found :(");
+
+   const token = getEncryptedToken(process.env.REACT_APP_SPOTIFY_TOKEN);
+
+   const url = `http://api.sprintt.co/spotify/play/${id}?access=${token}`;
+
+   return url;
+
+};
+
+export const formatTime = (time: number | undefined) => {
+
+   if (!time) return '--:--';
+
+   const minutes = Math.floor((time / 1000) / 60);
+
+   const leftOverSeconds = Math.floor((time / 1000) % 60);
+
+   const seconds = leftOverSeconds < 10 ? '0' + leftOverSeconds : leftOverSeconds;
+
+   return `${minutes}:${seconds}`;
+
+};

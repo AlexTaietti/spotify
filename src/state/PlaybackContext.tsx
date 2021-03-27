@@ -7,7 +7,14 @@ export type playlistContextData = {
    image: string;
 }
 
-type Action = { type: 'SET_PLAYLIST', playlist: playlistContextData } | { type: 'SET_SONG', song: any } | { type: 'PAUSE' } | { type: 'PLAY' };
+export type songContextData = {
+   artist: string;
+   name: string;
+   duration: number;
+   id: number;
+}
+
+type Action = { type: 'SET_PLAYLIST', playlist: playlistContextData } | { type: 'SET_SONG', song: songContextData } | { type: 'PAUSE' } | { type: 'PLAY' };
 
 type PlaybackDispatch = (action: Action) => void
 
@@ -15,9 +22,9 @@ type PlaybackState = {
 
    playlist?: playlistContextData;
 
-   song?: SongData;
+   song?: songContextData;
 
-   audio?: boolean;
+   playing?: boolean;
 
 } | undefined;
 
@@ -48,13 +55,13 @@ const playbackReducer = (state: PlaybackState, action: Action): PlaybackState =>
       case 'PLAY':
          return {
             ...state,
-            audio: true
+            playing: true
          }
 
       case 'PAUSE':
          return {
             ...state,
-            audio: false
+            playing: false
          }
 
       default: {
@@ -67,7 +74,7 @@ const playbackReducer = (state: PlaybackState, action: Action): PlaybackState =>
 
 function PlaybackProvider({ children }: PlaybackProviderProps) {
 
-   const [playbackState, playbackDispatch] = useReducer(playbackReducer, { playlist: undefined, song: undefined, audio: false });
+   const [playbackState, playbackDispatch] = useReducer(playbackReducer, { playlist: undefined, song: undefined, playing: false });
 
    const value = { state: playbackState, dispatch: playbackDispatch };
 

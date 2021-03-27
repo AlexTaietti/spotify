@@ -6,6 +6,7 @@ import { Filter } from './Filter';
 import { Songs } from './Songs';
 import { useTracks } from '../state/hooks/useTracks';
 import { usePlayback } from '../state/PlaybackContext';
+import { notifySongApi } from '../helpers/utils';
 
 type PlaylistLocationState = {
    id: number;
@@ -60,18 +61,27 @@ export const PlaylistView: React.FC = () => {
 
    const updateSong = async (song: SongData) => {
 
-      if ((playlistInfo && playlistInfo.tracks) && state?.song !== song) {
+      if ((playlistInfo && playlistInfo.tracks) && state?.song?.id !== song.track_id) {
 
          const playlistContextData = {
             id: locationState.id,
-            tracks: playlistInfo.tracks,
-            image: locationState.image
+            image: locationState.image,
+            tracks: playlistInfo.tracks
+         };
+
+         const songContextData = {
+            artist: song.artists_names,
+            id: song.track_id,
+            duration: song.duration,
+            name: song.name
          };
 
          dispatch({ type: 'SET_PLAYLIST', playlist: playlistContextData });
-         dispatch({ type: 'SET_SONG', song: song });
+         dispatch({ type: 'SET_SONG', song: songContextData });
 
-         if (!state?.audio) dispatch({ type: 'PLAY' });
+         notifySongApi(playlistContextData.id, songContextData.id);
+
+         if (!state?.playing) dispatch({ type: 'PLAY' });
 
       }
 

@@ -5,6 +5,9 @@ import { VariableBar } from "./VariableBar";
 
 const VolumeContainer = styled.div`
 
+   position: absolute;
+   right: 0;
+   top: 0;
    display: flex;
    height: 100%;
    margin-right: 3%;
@@ -26,14 +29,15 @@ const VolumeContainer = styled.div`
 
 type VolumeProps = {
    volume: number;
-}
+   setVolume: React.Dispatch<React.SetStateAction<number>>;
+};
 
-export const VolumeControls: React.FC<VolumeProps> = ({ volume }) => {
+export const VolumeControls: React.FC<VolumeProps> = ({ setVolume, volume }) => {
 
    return (
       <VolumeContainer>
          <i><img alt='volume icon' src={volumeIcon} /></i>
-         <VariableBar width='110px' value={volume} />
+         <VariableBar width='110px' value={volume} callback={setVolume} />
       </VolumeContainer>
 
    );

@@ -22,7 +22,7 @@ const CarouselContainer = styled.div`
 const CardsContainer = styled.div`
 
    display: flex;
-   justify-content: space-between;
+   justify-content: flex-start;
    position: relative;
 
 `;
@@ -35,13 +35,10 @@ const Controls = styled.div`
    right: 0px;
    font-size: 3rem;
    color: rgba(0, 0, 0, 0.4);
-   cursor: not-allowed;
+   cursor: pointer;
    user-select: none;
 
-   span.active{
-      cursor: pointer;
-      color: rgba(0, 0, 0, 1);
-   }
+   span.active{ color: rgba(0, 0, 0, 1); }
 
    span:last-of-type{ margin-left: 10px; }
 

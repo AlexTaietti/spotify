@@ -5,13 +5,14 @@ import { NextIcon } from './NextIcon';
 import { PauseIcon } from "./PauseIcon";
 import { PlayIcon } from './PlayIcon';
 import { VariableBar } from './VariableBar';
+import { formatTime } from '../helpers/utils';
 
 const ControlsContainer = styled.div`
 
-   display: inline-flex;
+   display: flex;
    flex-direction: column;
+   margin: 0 auto;
    width: 60%;
-   min-width: 40%;
    height: 100%;
    align-items: center;
    padding: 30px 0 15px;
@@ -65,16 +66,17 @@ const Progress = styled.div`
 
 type TrackControlsProps = {
 
-   progress: {
-      elapsed: string;
-      duration: string;
-   },
+   time?: number;
 
-   playing?: boolean
+   duration?: number;
+
+   setSongProgress: React.Dispatch<React.SetStateAction<number>>;
+
+   playing?: boolean;
 
 };
 
-export const TrackControls: React.FC<TrackControlsProps> = ({ progress, playing }) => {
+export const TrackControls: React.FC<TrackControlsProps> = ({ setSongProgress, time, duration, playing }) => {
 
    return (
       <ControlsContainer>
@@ -84,9 +86,9 @@ export const TrackControls: React.FC<TrackControlsProps> = ({ progress, playing 
             <NextIcon />
          </Controls>
          <Progress>
-            <span>{progress.elapsed}</span>
-            <VariableBar width='70%' value={45} />
-            <span>{progress.duration}</span>
+            <span>{time && duration ? formatTime(time * (duration / 100)) : '--:--'}</span>
+            <VariableBar callback={setSongProgress} width='70%' value={time || 0} />
+            <span>{formatTime(duration) || '--:--'}</span>
          </Progress>
       </ControlsContainer>
    );

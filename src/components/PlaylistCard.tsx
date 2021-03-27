@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { formatSlug, getResource } from '../helpers/utils';
+import { formatSlug, getResource, notifySongApi } from '../helpers/utils';
 import { Link } from 'react-router-dom';
 import { playlistContextData, usePlayback } from '../state/PlaybackContext';
 
@@ -8,14 +8,14 @@ const Card = styled.div`
 
    position: relative;
    width: 17%;
-   min-width: 150px;
-   max-width: 200px;
    user-select: none;
    display: -webkit-box;
    -webkit-box-orient: vertical;
    -webkit-line-clamp: 4;
    white-space: normal;
    overflow: hidden;
+
+   &:not(:first-of-type){ margin-left: calc((100% - (17% * 5)) / 4); }
 
    a{ color: #191414; }
 
@@ -77,9 +77,21 @@ export const PlaylistCard: React.FC<PlaylistCardProps> = ({ data }) => {
          image: data.image_url
       };
 
-      dispatch({ type: 'SET_PLAYLIST', playlist: playlistContextData });
+      const playlistFirstTrack = playlistContextData.tracks[0];
 
-      dispatch({ type: 'SET_SONG', song: playlistContextData.tracks[0] });
+      const songContextData = {
+         artist: playlistFirstTrack.artists_names,
+         id: playlistFirstTrack.track_id,
+         duration: playlistFirstTrack.duration,
+         name: playlistFirstTrack.name
+      };
+
+      dispatch({ type: 'SET_PLAYLIST', playlist: playlistContextData });
+      dispatch({ type: 'SET_SONG', song: songContextData });
+
+      notifySongApi(playlistContextData.id, songContextData.id);
+
+      dispatch({ type: 'PLAY' });
 
    }
 

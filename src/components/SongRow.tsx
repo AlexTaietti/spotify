@@ -30,7 +30,7 @@ const Row = styled.tr`
          border-bottom-left-radius: 10px;
          border-bottom: none;
 
-         img{
+         &:not(.show) img{
             transition: opacity .3s;
             opacity: 0;
          }
@@ -87,17 +87,17 @@ export const SongRow: React.FC<SongRowProps> = ({ song, updateSong }: SongRowPro
 
    const handleAudio = () => {
 
-      if (state?.song === song && state?.audio) dispatch({ type: 'PAUSE' });
+      if (state?.song?.id === song.track_id && state?.playing) dispatch({ type: 'PAUSE' });
 
-      if (state?.song === song && !state?.audio) dispatch({ type: 'PLAY' });
+      if (state?.song?.id === song.track_id && !state?.playing) dispatch({ type: 'PLAY' });
 
-      if (state?.song !== song) updateSong(song);
+      if (state?.song?.id !== song.track_id) updateSong(song);
 
-   }
+   };
 
    return (
       <Row onClick={() => updateSong(song)}>
-         <PlaystateIcon handleAudio={handleAudio} playing={state?.song === song && state?.audio} />
+         <PlaystateIcon handleAudio={handleAudio} visible={state?.song?.id === song.track_id} playing={state?.song?.id === song.track_id && state?.playing} />
          <HeartIcon liked={song.is_liked} />
          <td>{song.name}</td>
          <td>{song.artists_names}</td>

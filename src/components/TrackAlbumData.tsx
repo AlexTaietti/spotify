@@ -4,6 +4,9 @@ const AlbumDataContainer = styled.div`
 
    height: 100%;
    display: flex;
+   position: absolute;
+   left: 0;
+   top: 0;
 
    img{
       display: inline-block;
@@ -17,17 +20,24 @@ const AlbumDataContainer = styled.div`
       justify-content: center;
       flex-direction: column;
       height: 100%;
-      padding: 20px 30px;
+      max-width: 160px;
+      padding: 0 20px;
+
+      span{
+         white-space: nowrap;
+         overflow: hidden;
+         text-overflow: ellipsis;
+      }
       
       span:first-of-type{
          font-weight: 400;
-         font-size: 2.4rem;
+         font-size: 1.6rem;
          margin-bottom: 8px;
       }
 
       span:last-of-type{
          font-weight: 300;
-         font-size: 1.8rem;
+         font-size: 1.4rem;
       }
 
    }
@@ -44,15 +54,13 @@ export const AlbumData: React.FC<AlbumDataProps> = ({ image, song, artist }) => 
 
    return (
 
-      (image && song && artist) ?
-
-         <AlbumDataContainer>
-            <img alt='playlist thumbnail' src={image} />
-            <div>
-               <span>{song}</span>
-               <span>{artist}</span>
-            </div>
-         </AlbumDataContainer> : null
+      <AlbumDataContainer>
+         <img alt='playlist thumbnail' src={image} />
+         <div>
+            <span>{song}</span>
+            <span>{artist}</span>
+         </div>
+      </AlbumDataContainer>
 
    );
 
