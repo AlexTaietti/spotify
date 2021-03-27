@@ -26,6 +26,8 @@ type PlaybackState = {
 
    playing?: boolean;
 
+   lastSong?: number;
+
 } | undefined;
 
 type PlaybackProviderProps = { children: React.ReactNode };
@@ -43,6 +45,7 @@ const playbackReducer = (state: PlaybackState, action: Action): PlaybackState =>
       case 'SET_SONG':
          return {
             ...state,
+            lastSong: state?.song?.id,
             song: action.song
          }
 

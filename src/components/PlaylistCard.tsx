@@ -57,7 +57,7 @@ export const PlaylistCard: React.FC<PlaylistCardProps> = ({ data }) => {
 
    const [playlistSlug, setPlaylistSlug] = useState<string>();
 
-   const { dispatch } = usePlayback();
+   const { state, dispatch } = usePlayback();
 
    useEffect(() => {
 
@@ -91,7 +91,7 @@ export const PlaylistCard: React.FC<PlaylistCardProps> = ({ data }) => {
 
       notifySongApi(playlistContextData.id, songContextData.id);
 
-      dispatch({ type: 'PLAY' });
+      if (!state?.playing) dispatch({ type: 'PLAY' });
 
    }
 
