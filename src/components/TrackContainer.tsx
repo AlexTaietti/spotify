@@ -35,7 +35,7 @@ export const TrackContainer: React.FC = () => {
 
    }, [state]);
 
-   const songEndHandler = useCallback(() => {
+   const songEndHandler = useCallback(() => { //TODO: refactor me!
 
       if (state?.playlist?.tracks.length) {
 
@@ -90,7 +90,7 @@ export const TrackContainer: React.FC = () => {
 
          audioObject.current.addEventListener('ended', songEndHandler);
 
-         console.log(`Now playing: ${state.song.name}, from the album playlist with id {${state?.playlist?.id}}.\n\nThe last song played had this id {${currentSongID.current}} and here's the current song's id {${state.song.id}}`);
+         console.log(`Now playing: ${state.song.name}, from the playlist with id {${state?.playlist?.id}}.\n\nThe last song played had this id {${currentSongID.current}} and here's the current song's id {${state.song.id}}`);
 
          currentSongID.current = state.song.id;
 
