@@ -80,10 +80,28 @@ export const TrackContainer: React.FC = () => {
 
       if (state?.song && state.song.id !== state.lastSong) {
 
+         const playingMusic = !audioObject.current.paused || audioObject.current.ended; //check if we are blasting a gem already...
+
          const url = makeSongUrl(state.song.id);
 
          audioObject.current.src = url;
          audioObject.current.load();
+
+         if (playingMusic) {
+
+            const audioPromise = audioObject?.current?.play();
+
+            if (audioPromise !== undefined) {
+
+               audioPromise.then(() => {
+
+                  console.log('playing some sweet tunes!');
+
+               }).catch(() => console.warn("playback prevented"));
+
+            }
+
+         }
 
          audioObject.current.addEventListener('timeupdate', timeUpdateHandler);
          audioObject.current.addEventListener('ended', songEndHandler);
@@ -123,7 +141,7 @@ export const TrackContainer: React.FC = () => {
 
       } else { audioObject?.current?.pause(); }
 
-   }, [state?.playing])
+   }, [state?.playing]);
 
    useEffect(() => {
 
