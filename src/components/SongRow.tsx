@@ -85,15 +85,17 @@ export const SongRow: React.FC<SongRowProps> = ({ song, updateSong }: SongRowPro
 
    const { state, dispatch } = usePlayback();
 
-   const handleAudio = () => {
+   const handleAudio = (event: React.MouseEvent) => {
 
-      if (state?.song?.id === song.track_id && state?.playing) dispatch({ type: 'PAUSE' });
+      if (state?.song?.id === song.track_id) {
 
-      if (state?.song?.id === song.track_id && !state?.playing) dispatch({ type: 'PLAY' });
+         event.stopPropagation();
 
-      if (state?.song?.id !== song.track_id) updateSong(song);
+         state?.playing ? dispatch({ type: 'PAUSE' }) : dispatch({ type: 'PLAY' });
 
-   };
+      }
+
+   }
 
    return (
       <Row onClick={() => updateSong(song)}>
