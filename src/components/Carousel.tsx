@@ -21,8 +21,9 @@ const CarouselContainer = styled.div`
 
 const CardsContainer = styled.div`
 
-   display: flex;
-   justify-content: flex-start;
+   display: grid;
+   grid-template-columns: repeat(5, 17%);
+   column-gap: calc((100% - (17% * 5)) / 4);
    position: relative;
 
 `;

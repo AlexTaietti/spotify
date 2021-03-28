@@ -89,7 +89,7 @@ export const SongRow: React.FC<SongRowProps> = ({ song, updateSong }: SongRowPro
 
       if (state?.song?.id === song.track_id) {
 
-         event.stopPropagation();
+         event.stopPropagation(); //prevent propagation since we don't need to set a new song in this case...
 
          state?.playing ? dispatch({ type: 'PAUSE' }) : dispatch({ type: 'PLAY' });
 

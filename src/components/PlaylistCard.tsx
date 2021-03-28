@@ -54,15 +54,12 @@ const Thumbnail = styled.div`
 const Card = styled.div`
 
    position: relative;
-   width: 17%;
    user-select: none;
    display: -webkit-box;
    -webkit-box-orient: vertical;
    -webkit-line-clamp: 4;
    white-space: normal;
    overflow: hidden;
-
-   &:not(:first-of-type){ margin-left: calc((100% - (17% * 5)) / 4); }
 
    a{ color: #191414; }
 
