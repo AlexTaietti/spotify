@@ -135,23 +135,16 @@ export const PlaylistCard: React.FC<PlaylistCardProps> = ({ data }) => {
 
             const playlistContextData = {
                id: data.playlist_id,
-               tracks: playlistDetails.tracks,
+               tracks: [...playlistDetails.tracks],
                image: data.image_url
             };
 
             const playlistFirstTrack = playlistContextData.tracks[0];
 
-            const songContextData = {
-               artist: playlistFirstTrack.artists_names,
-               id: playlistFirstTrack.track_id,
-               duration: playlistFirstTrack.duration,
-               name: playlistFirstTrack.name
-            };
-
             dispatch({ type: 'SET_PLAYLIST', playlist: playlistContextData });
-            dispatch({ type: 'SET_SONG', song: songContextData });
+            dispatch({ type: 'SET_SONG', song: playlistFirstTrack });
 
-            notifySongApi(playlistContextData.id, songContextData.id);
+            notifySongApi(playlistContextData.id, playlistFirstTrack.track_id);
 
             if (!state?.playing) dispatch({ type: 'PLAY' });
 

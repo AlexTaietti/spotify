@@ -7,14 +7,7 @@ export type playlistContextData = {
    image: string;
 }
 
-export type songContextData = {
-   artist: string;
-   name: string;
-   duration: number;
-   id: number;
-}
-
-type Action = { type: 'SET_PLAYLIST', playlist: playlistContextData } | { type: 'SET_SONG', song: songContextData } | { type: 'PAUSE' } | { type: 'PLAY' };
+type Action = { type: 'SET_PLAYLIST', playlist: playlistContextData } | { type: 'SET_DISPLAY_TRACKS', tracks: SongData[] } | { type: 'SET_SONG', song: SongData } | { type: 'UPDATE_SONG', song: SongData } | { type: 'PAUSE' } | { type: 'PLAY' };
 
 type PlaybackDispatch = (action: Action) => void
 
@@ -22,7 +15,9 @@ type PlaybackState = {
 
    playlist?: playlistContextData;
 
-   song?: songContextData;
+   displayTracks?: SongData[];
+
+   song?: SongData;
 
    playing?: boolean;
 
@@ -45,7 +40,13 @@ const playbackReducer = (state: PlaybackState, action: Action): PlaybackState =>
       case 'SET_SONG':
          return {
             ...state,
-            lastSong: state?.song?.id,
+            lastSong: state?.song?.track_id,
+            song: action.song
+         }
+
+      case 'UPDATE_SONG':
+         return {
+            ...state,
             song: action.song
          }
 
@@ -53,6 +54,12 @@ const playbackReducer = (state: PlaybackState, action: Action): PlaybackState =>
          return {
             ...state,
             playlist: action.playlist
+         }
+
+      case 'SET_DISPLAY_TRACKS':
+         return {
+            ...state,
+            displayTracks: action.tracks
          }
 
       case 'PLAY':

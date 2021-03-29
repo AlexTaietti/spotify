@@ -89,30 +89,16 @@ export const TrackControls: React.FC<TrackControlsProps> = ({ setSongProgress, t
 
          for (let i = 0; i < state.playlist.tracks.length; i++) {
 
-            if (state.playlist.tracks[i].track_id === state.song?.id) {
+            if (state.playlist.tracks[i].track_id === state.song?.track_id) {
 
                if (state.playlist.tracks[i + 1]) {
 
-                  const songContextData = {
-                     artist: state.playlist?.tracks[i + 1].artists_names,
-                     id: state.playlist.tracks[i + 1].track_id,
-                     duration: state.playlist.tracks[i + 1].duration,
-                     name: state.playlist.tracks[i + 1].name
-                  };
-
-                  dispatch({ type: 'SET_SONG', song: songContextData });
+                  dispatch({ type: 'SET_SONG', song: state.playlist?.tracks[i + 1] });
                   dispatch({ type: 'PLAY' });
 
                } else {
 
-                  const songContextData = {
-                     artist: state.playlist?.tracks[0].artists_names,
-                     id: state.playlist.tracks[0].track_id,
-                     duration: state.playlist.tracks[0].duration,
-                     name: state.playlist.tracks[0].name
-                  };
-
-                  dispatch({ type: 'SET_SONG', song: songContextData });
+                  dispatch({ type: 'SET_SONG', song: state.playlist.tracks[0] });
                   dispatch({ type: 'PLAY' });
 
                }
@@ -135,30 +121,16 @@ export const TrackControls: React.FC<TrackControlsProps> = ({ setSongProgress, t
 
          for (let i = 0; i < state.playlist.tracks.length; i++) {
 
-            if (state.playlist.tracks[i].track_id === state.song?.id) {
+            if (state.playlist.tracks[i].track_id === state.song?.track_id) {
 
                if (state.playlist.tracks[i - 1]) {
 
-                  const songContextData = {
-                     artist: state.playlist?.tracks[i - 1].artists_names,
-                     id: state.playlist.tracks[i - 1].track_id,
-                     duration: state.playlist.tracks[i - 1].duration,
-                     name: state.playlist.tracks[i - 1].name
-                  };
-
-                  dispatch({ type: 'SET_SONG', song: songContextData });
+                  dispatch({ type: 'SET_SONG', song: state.playlist.tracks[i - 1] });
                   dispatch({ type: 'PLAY' });
 
                } else {
 
-                  const songContextData = {
-                     artist: state.playlist?.tracks[state.playlist.tracks.length - 1].artists_names,
-                     id: state.playlist.tracks[state.playlist.tracks.length - 1].track_id,
-                     duration: state.playlist.tracks[state.playlist.tracks.length - 1].duration,
-                     name: state.playlist.tracks[state.playlist.tracks.length - 1].name
-                  };
-
-                  dispatch({ type: 'SET_SONG', song: songContextData });
+                  dispatch({ type: 'SET_SONG', song: state.playlist.tracks[state.playlist.tracks.length - 1] });
                   dispatch({ type: 'PLAY' });
 
                }
@@ -171,7 +143,7 @@ export const TrackControls: React.FC<TrackControlsProps> = ({ setSongProgress, t
 
       }
 
-   }, [dispatch, state?.playlist, state?.song]);;
+   }, [dispatch, state?.playlist, state?.song]);
 
    return (
       <ControlsContainer>

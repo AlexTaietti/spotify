@@ -1,4 +1,5 @@
 import axios from "axios";
+import { SongData } from "../components/PlaylistView";
 
 export const axiosInstance = axios.create({
    baseURL: 'http://api.sprintt.co/spotify',
@@ -20,6 +21,14 @@ export const getResource: <T>(url: string) => Promise<T> = async (url) => {
 export const notifySongApi = (playlistID: number, songID: number) => {
 
    const url = `notify_played/${playlistID}/${songID}`;
+
+   axiosInstance.post(url);
+
+};
+
+export const likeSongApi = (songObject: SongData) => {
+
+   const url = `liked_tracks/${songObject.track_id}?status=${songObject.is_liked}`;
 
    axiosInstance.post(url);
 

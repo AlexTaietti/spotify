@@ -1,12 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import styled from 'styled-components';
 import { PlaylistHeader } from './PlaylistHeader';
 import { Filter } from './Filter';
 import { Songs } from './Songs';
-import { useTracks } from '../state/hooks/useTracks';
+import { useSpotifyApi } from '../state/hooks/useSpotifyApi';
 import { usePlayback } from '../state/PlaybackContext';
 import { notifySongApi } from '../helpers/utils';
+
+const PlaylistViewWrapper = styled.div`
+
+   position: relative;
+   display: block;
+   min-height: 100%;
+   min-width: 100%;
+
+`;
+
+const SongsSection = styled.section`
+
+   position: relative;
+   padding: 0 50px 35px 150px;
+   display: block;
+   min-height: 100%;
+   min-width: 100%;
+   z-index: 0;
+
+`;
+
+type KeysMatching<T, V> = { [K in keyof T]: T[K] extends V ? K : never }[keyof T];
 
 type PlaylistLocationState = {
    id: number;
@@ -31,55 +53,62 @@ export type PlaylistInfoObject = {
    tracks: Array<SongData>;
 }
 
-const PlaylistViewWrapper = styled.div`
-
-   position: relative;
-   display: block;
-   min-height: 100%;
-   min-width: 100%;
-
-`;
-
-const SongsSection = styled.section`
-
-   position: relative;
-   padding: 0 50px 35px 150px;
-   display: block;
-   min-height: 100%;
-   min-width: 100%;
-   z-index: 0;
-
-`;
+type SongFilterableProp = KeysMatching<SongData, string>;
 
 export const PlaylistView: React.FC = () => {
 
    const { state: locationState } = useLocation<PlaylistLocationState>();
 
-   const { playlistInfo, displayedSongs, setFilter } = useTracks(locationState.id);
+   const { response: playlistInfo } = useSpotifyApi<PlaylistInfoObject>(`playlist_tracks/${locationState.id}`);
 
    const { state, dispatch } = usePlayback();
 
+   const [filter, setFilter] = useState('');
+
+   useEffect(() => {
+
+      if (playlistInfo) {
+
+         if (!state?.displayTracks || filter.length <= 2) {
+
+            dispatch({ type: 'SET_DISPLAY_TRACKS', tracks: [...playlistInfo.tracks] });
+
+         } else {
+
+            const songs = playlistInfo.tracks.filter(song => {
+
+               for (let prop in song) {
+
+                  if (typeof song[prop as keyof SongData] === 'string' && song[prop as SongFilterableProp].includes(filter)) return true;
+
+               }
+
+               return false;
+
+            });
+
+            dispatch({ type: 'SET_DISPLAY_TRACKS', tracks: songs });
+
+         }
+
+      }
+
+   }, [filter, playlistInfo]);
+
    const updateSong = async (song: SongData) => {
 
-      if ((playlistInfo && playlistInfo.tracks) && state?.song?.id !== song.track_id) {
+      if ((playlistInfo && playlistInfo.tracks) && state?.song?.track_id !== song.track_id) {
 
          const playlistContextData = {
             id: locationState.id,
             image: locationState.image,
-            tracks: playlistInfo.tracks
-         };
-
-         const songContextData = {
-            artist: song.artists_names,
-            id: song.track_id,
-            duration: song.duration,
-            name: song.name
+            tracks: [...playlistInfo.tracks]
          };
 
          dispatch({ type: 'SET_PLAYLIST', playlist: playlistContextData });
-         dispatch({ type: 'SET_SONG', song: songContextData });
+         dispatch({ type: 'SET_SONG', song: song });
 
-         notifySongApi(playlistContextData.id, songContextData.id);
+         notifySongApi(playlistContextData.id, song.track_id);
 
          if (!state?.playing) dispatch({ type: 'PLAY' });
 
@@ -93,13 +122,13 @@ export const PlaylistView: React.FC = () => {
 
          {
 
-            (playlistInfo && displayedSongs) && //use a fragment just so I can conditionally render even in case of failed fetch attempt
+            (playlistInfo && state?.displayTracks) && //use a fragment just so I can conditionally render even in case of failed fetch attempt
 
             <>
                <PlaylistHeader imageUrl={locationState.image} name={locationState.name} description={locationState.description} songNumber={playlistInfo.tracks.length} duration={playlistInfo.playlist_duration} />
                <SongsSection>
                   <Filter setFilter={setFilter} />
-                  <Songs updateSong={updateSong} songs={displayedSongs} />
+                  <Songs updateSong={updateSong} songs={state.displayTracks} />
                </SongsSection>
             </>
 

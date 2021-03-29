@@ -28,11 +28,11 @@ export const TrackContainer: React.FC = () => {
 
    const timeUpdateHandler = useCallback(() => {
 
-      if (audioObject?.current?.currentTime && state?.song?.duration) {
+      if (audioObject?.current?.currentTime && state?.song?.duration && state.song.track_id !== state?.lastSong) {
          setSongProgressionBarWidth(((audioObject.current.currentTime * 1000) * 100) / state.song.duration);
       }
 
-   }, [state?.song]);
+   }, [state?.song, state?.lastSong]);
 
    const songEndHandler = useCallback(() => { //TODO: refactor me!
 
@@ -40,29 +40,15 @@ export const TrackContainer: React.FC = () => {
 
          for (let i = 0; i < state.playlist.tracks.length; i++) {
 
-            if (state.playlist.tracks[i].track_id === state.song?.id) {
+            if (state.playlist.tracks[i].track_id === state.song?.track_id) {
 
                if (state.playlist.tracks[i + 1]) {
 
-                  const songContextData = {
-                     artist: state.playlist?.tracks[i + 1].artists_names,
-                     id: state.playlist.tracks[i + 1].track_id,
-                     duration: state.playlist.tracks[i + 1].duration,
-                     name: state.playlist.tracks[i + 1].name
-                  };
-
-                  dispatch({ type: 'SET_SONG', song: songContextData });
+                  dispatch({ type: 'SET_SONG', song: state.playlist.tracks[i + 1] });
 
                } else {
 
-                  const songContextData = {
-                     artist: state.playlist?.tracks[0].artists_names,
-                     id: state.playlist.tracks[0].track_id,
-                     duration: state.playlist.tracks[0].duration,
-                     name: state.playlist.tracks[0].name
-                  };
-
-                  dispatch({ type: 'SET_SONG', song: songContextData });
+                  dispatch({ type: 'SET_SONG', song: state.playlist.tracks[0] });
 
                }
 
@@ -78,11 +64,20 @@ export const TrackContainer: React.FC = () => {
 
    useEffect(() => {
 
-      if (state?.song && state.song.id !== state.lastSong) {
+      if (state?.song && state.song.track_id !== state.lastSong) {
+
+         if (typeof audioObject.current.ontimeupdate == "function" && typeof audioObject.current.onended == "function") {
+
+            audioObject.current.removeEventListener('timeupdate', timeUpdateHandler);
+
+            // eslint-disable-next-line
+            audioObject.current.removeEventListener('ended', songEndHandler);
+
+         }
 
          const playingMusic = !audioObject.current.paused || audioObject.current.ended; //check if we are blasting a gem already...
 
-         const url = makeSongUrl(state.song.id);
+         const url = makeSongUrl(state.song.track_id);
 
          audioObject.current.src = url;
          audioObject.current.load();
@@ -103,23 +98,14 @@ export const TrackContainer: React.FC = () => {
 
          }
 
-         audioObject.current.addEventListener('timeupdate', timeUpdateHandler);
-         audioObject.current.addEventListener('ended', songEndHandler);
+         audioObject.current.ontimeupdate = timeUpdateHandler;
+         audioObject.current.onended = songEndHandler;
 
-         console.log(`Now playing: ${state.song.name}, from the playlist with id {${state?.playlist?.id}}.\n\nThe last song played had this id {${state.lastSong}} and here's the current song's id {${state.song.id}}`);
+         console.log(`Now playing: ${state.song.name}, from the playlist with id {${state?.playlist?.id}}.\n\nThe last song played had this id {${state?.lastSong}} and here's the current song's id {${state.song.track_id}}`);
 
          setSongProgress(0);
 
       }
-
-      return () => {
-
-         audioObject.current.removeEventListener('timeupdate', timeUpdateHandler);
-
-         // eslint-disable-next-line
-         audioObject.current.removeEventListener('ended', songEndHandler);
-
-      };
 
    }, [state?.song, state?.lastSong, state?.playlist, songEndHandler, timeUpdateHandler]);
 
@@ -151,7 +137,7 @@ export const TrackContainer: React.FC = () => {
 
    useEffect(() => {
 
-      if (audioObject.current && state?.song) {
+      if (state?.song) {
 
          // @ts-ignore
          audioObject.current.currentTime = `${((state.song.duration / 1000) * songProgress) / 100}`;
@@ -160,11 +146,11 @@ export const TrackContainer: React.FC = () => {
 
       }
 
-   }, [songProgress, state?.song]);
+   }, [songProgress]);
 
    return (
       <TrackWrapper>
-         { state?.song && <AlbumData song={state?.song?.name} artist={state?.song?.artist} image={state?.playlist?.image} />}
+         { state?.song && state.playlist ? <AlbumData displayTracks={state?.displayTracks} song={state.song} playlist={state.playlist} /> : null}
          <TrackControls setSongProgress={setSongProgress} playing={state?.playing} time={songProgressionBarWidth} duration={state?.song?.duration} />
          <VolumeControls setVolume={setVolume} volume={volume} />
       </TrackWrapper>

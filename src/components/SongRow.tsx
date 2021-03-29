@@ -3,6 +3,7 @@ import { HeartIcon } from './HeartIcon';
 import { PlaystateIcon } from './PlaystateIcon';
 import styled from 'styled-components';
 import { usePlayback } from '../state/PlaybackContext';
+import { likeSongApi } from '../helpers/utils';
 
 const Row = styled.tr`
 
@@ -87,7 +88,7 @@ export const SongRow: React.FC<SongRowProps> = ({ song, updateSong }: SongRowPro
 
    const handleAudio = (event: React.MouseEvent) => {
 
-      if (state?.song?.id === song.track_id) {
+      if (state?.song?.track_id === song.track_id) {
 
          event.stopPropagation(); //prevent propagation since we don't need to set a new song in this case...
 
@@ -97,10 +98,50 @@ export const SongRow: React.FC<SongRowProps> = ({ song, updateSong }: SongRowPro
 
    }
 
+   const handleLike = (event: React.MouseEvent) => {
+
+      event.stopPropagation(); //prevent propagation since we don't need to set a new song here...
+
+      const newSongObject = { ...song, is_liked: !song.is_liked };
+
+      likeSongApi(newSongObject);
+
+      dispatch({ type: 'SET_SONG', song: newSongObject });
+
+      if (state?.displayTracks) {
+
+         let songIndexInContextPlaylist;
+
+         for (let i = 0; i < state.displayTracks.length; i++) {
+
+            if (state.displayTracks[i].track_id === song.track_id) {
+
+               songIndexInContextPlaylist = i;
+
+               break;
+
+            }
+
+         }
+
+         if (songIndexInContextPlaylist !== undefined) {
+
+            const newPlaylistTracks = [...state.displayTracks];
+
+            newPlaylistTracks[songIndexInContextPlaylist] = { ...newSongObject };
+
+            dispatch({ type: 'SET_DISPLAY_TRACKS', tracks: newPlaylistTracks });
+
+         }
+
+      }
+
+   };
+
    return (
       <Row onClick={() => updateSong(song)}>
-         <PlaystateIcon handleAudio={handleAudio} visible={state?.song?.id === song.track_id} playing={state?.song?.id === song.track_id && state?.playing} />
-         <HeartIcon liked={song.is_liked} />
+         <PlaystateIcon handleAudio={handleAudio} visible={state?.song?.track_id === song.track_id} playing={state?.song?.track_id === song.track_id && state?.playing} />
+         <HeartIcon handleLike={handleLike} liked={song.is_liked} />
          <td>{song.name}</td>
          <td>{song.artists_names}</td>
          <td>{song.album_name}</td>
