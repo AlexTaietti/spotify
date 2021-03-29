@@ -38,7 +38,13 @@ const Row = styled.tr`
 
       }
 
-      &:nth-of-type(2){ padding-left: 0 12px; }
+      &:nth-of-type(2){
+         
+         padding-left: 0 12px;
+
+         img{ max-height: 24px; }
+
+      }
 
       &:last-of-type{
          
@@ -86,13 +92,13 @@ export const SongRow: React.FC<SongRowProps> = ({ song, updateSong }: SongRowPro
 
    const { state, dispatch } = usePlayback();
 
-   const handleAudio = (event: React.MouseEvent) => {
+   const handlePlaystate = (event: React.MouseEvent) => {
 
       if (state?.song?.track_id === song.track_id) {
 
-         event.stopPropagation(); //prevent propagation since we don't need to set a new song in this case...
+         event.stopPropagation(); //prevent propagation since we don't need to set a new song in this case
 
-         state?.playing ? dispatch({ type: 'PAUSE' }) : dispatch({ type: 'PLAY' });
+         state.playing ? dispatch({ type: 'PAUSE' }) : dispatch({ type: 'PLAY' });
 
       }
 
@@ -100,21 +106,50 @@ export const SongRow: React.FC<SongRowProps> = ({ song, updateSong }: SongRowPro
 
    const handleLike = (event: React.MouseEvent) => {
 
-      event.stopPropagation(); //prevent propagation since we don't need to set a new song here...
+      event.stopPropagation(); //prevent propagation since we don't need to set a new song here
 
       const newSongObject = { ...song, is_liked: !song.is_liked };
 
       likeSongApi(newSongObject);
 
-      dispatch({ type: 'SET_SONG', song: newSongObject });
+      //if this one is the current global song, update its "liked" flag
+      if (state?.song?.track_id === song.track_id) dispatch({ type: 'SET_SONG', song: newSongObject });
 
       if (state?.displayTracks) {
 
-         let songIndexInContextPlaylist;
+         let songIndexInDisplayedPlaylist;
 
          for (let i = 0; i < state.displayTracks.length; i++) {
 
             if (state.displayTracks[i].track_id === song.track_id) {
+
+               songIndexInDisplayedPlaylist = i;
+
+               break;
+
+            }
+
+         }
+
+         if (songIndexInDisplayedPlaylist !== undefined) {
+
+            const newPlaylistTracks = [...state.displayTracks];
+
+            newPlaylistTracks[songIndexInDisplayedPlaylist] = { ...newSongObject };
+
+            dispatch({ type: 'SET_DISPLAY_TRACKS', tracks: newPlaylistTracks });
+
+         }
+
+      }
+
+      if (state?.playlist?.tracks) {
+
+         let songIndexInContextPlaylist;
+
+         for (let i = 0; i < state.playlist.tracks.length; i++) {
+
+            if (state.playlist.tracks[i].track_id === song.track_id) {
 
                songIndexInContextPlaylist = i;
 
@@ -126,11 +161,13 @@ export const SongRow: React.FC<SongRowProps> = ({ song, updateSong }: SongRowPro
 
          if (songIndexInContextPlaylist !== undefined) {
 
-            const newPlaylistTracks = [...state.displayTracks];
+            const newPlaylistTracks = [...state.playlist.tracks];
 
             newPlaylistTracks[songIndexInContextPlaylist] = { ...newSongObject };
 
-            dispatch({ type: 'SET_DISPLAY_TRACKS', tracks: newPlaylistTracks });
+            const newPlaylist = { ...state.playlist, tracks: newPlaylistTracks };
+
+            dispatch({ type: 'SET_PLAYLIST', playlist: newPlaylist });
 
          }
 
@@ -140,7 +177,7 @@ export const SongRow: React.FC<SongRowProps> = ({ song, updateSong }: SongRowPro
 
    return (
       <Row onClick={() => updateSong(song)}>
-         <PlaystateIcon handleAudio={handleAudio} visible={state?.song?.track_id === song.track_id} playing={state?.song?.track_id === song.track_id && state?.playing} />
+         <PlaystateIcon handlePlaystate={handlePlaystate} visible={state?.song?.track_id === song.track_id} playing={state?.song?.track_id === song.track_id && state?.playing} />
          <HeartIcon handleLike={handleLike} liked={song.is_liked} />
          <td>{song.name}</td>
          <td>{song.artists_names}</td>

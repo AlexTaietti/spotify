@@ -21,20 +21,19 @@ export const TrackContainer: React.FC = () => {
 
    const [volume, setVolume] = useState(50);
 
-   const [songProgress, setSongProgress] = useState(0);
-   const [songProgressionBarWidth, setSongProgressionBarWidth] = useState<number>();
+   const [songProgress, setSongProgress] = useState<number | undefined>(0);
 
    const audioObject = useRef<HTMLAudioElement>(new Audio());
 
+   //handler for the audio object (will be provided with a fresh scope whenever the global song object changes)
    const timeUpdateHandler = useCallback(() => {
 
-      if (audioObject?.current?.currentTime && state?.song?.duration && state.song.track_id !== state?.lastSong) {
-         setSongProgressionBarWidth(((audioObject.current.currentTime * 1000) * 100) / state.song.duration);
-      }
+      setSongProgress(state?.song?.duration && ((audioObject.current.currentTime * 1000) * 100) / state.song.duration);
 
-   }, [state?.song, state?.lastSong]);
+   }, [state?.song]);
 
-   const songEndHandler = useCallback(() => { //TODO: refactor me!
+   //handler for the audio object (will be provided with a fresh scope whenever either the global song object or the global playlist object changes)
+   const songEndHandler = useCallback(() => {
 
       if (state?.playlist?.tracks.length) {
 
@@ -62,18 +61,10 @@ export const TrackContainer: React.FC = () => {
 
    }, [state?.playlist, state?.song, dispatch]);
 
+   //effect for resetting the app's audio object and loading a new banger
    useEffect(() => {
 
       if (state?.song && state.song.track_id !== state.lastSong) {
-
-         if (typeof audioObject.current.ontimeupdate == "function" && typeof audioObject.current.onended == "function") {
-
-            audioObject.current.removeEventListener('timeupdate', timeUpdateHandler);
-
-            // eslint-disable-next-line
-            audioObject.current.removeEventListener('ended', songEndHandler);
-
-         }
 
          const playingMusic = !audioObject.current.paused || audioObject.current.ended; //check if we are blasting a gem already...
 
@@ -81,6 +72,10 @@ export const TrackContainer: React.FC = () => {
 
          audioObject.current.src = url;
          audioObject.current.load();
+
+         //using a standard useEffect clean up function would cause an undesired behaviour in this specific case
+         if (typeof audioObject.current.ontimeupdate === 'function') audioObject.current.removeEventListener('timeupdate', timeUpdateHandler);
+         audioObject.current.ontimeupdate = timeUpdateHandler;
 
          if (playingMusic) {
 
@@ -98,17 +93,16 @@ export const TrackContainer: React.FC = () => {
 
          }
 
-         audioObject.current.ontimeupdate = timeUpdateHandler;
-         audioObject.current.onended = songEndHandler;
 
-         console.log(`Now playing: ${state.song.name}, from the playlist with id {${state?.playlist?.id}}.\n\nThe last song played had this id {${state?.lastSong}} and here's the current song's id {${state.song.track_id}}`);
+         console.log(`Now playing: ${state.song.name}.\n\nLast song's id was {${state?.lastSong}} and here's the current one {${state.song.track_id}}`);
 
          setSongProgress(0);
 
       }
 
-   }, [state?.song, state?.lastSong, state?.playlist, songEndHandler, timeUpdateHandler]);
+   }, [state?.song, state?.lastSong, timeUpdateHandler]);
 
+   //effect for toggling the audio object's playstate whenever a component changes the global state's "playing" flag
    useEffect(() => {
 
       if (state?.playing) {
@@ -129,29 +123,44 @@ export const TrackContainer: React.FC = () => {
 
    }, [state?.playing]);
 
+
+   //effect for resetting the handler fired by the audio object when a song is done playing
+   useEffect(() => {
+
+      const currentAudioObject = audioObject.current;
+
+      currentAudioObject.addEventListener('ended', songEndHandler);
+
+      return () => currentAudioObject.removeEventListener('ended', songEndHandler);
+
+   }, [songEndHandler]);
+
+   //effect for setting the audio object's volume
    useEffect(() => {
 
       if (audioObject.current && audioObject.current.volume) audioObject.current.volume = volume / 100;
 
    }, [volume]);
 
-   useEffect(() => {
+   const handleSelectPoint = useCallback((trackPercentage) => {
+
+      console.log(audioObject.current.currentTime, trackPercentage);
 
       if (state?.song) {
 
          // @ts-ignore
-         audioObject.current.currentTime = `${((state.song.duration / 1000) * songProgress) / 100}`;
+         audioObject.current.currentTime = `${((state.song.duration / 1000) * trackPercentage) / 100}`;
 
-         setSongProgressionBarWidth(((audioObject.current.currentTime * 1000) * 100) / state.song.duration);
+         setSongProgress(((audioObject.current.currentTime * 1000) * 100) / state.song.duration);
 
       }
 
-   }, [songProgress]);
+   }, [state?.song]);
 
    return (
       <TrackWrapper>
          { state?.song && state.playlist ? <AlbumData displayTracks={state?.displayTracks} song={state.song} playlist={state.playlist} /> : null}
-         <TrackControls setSongProgress={setSongProgress} playing={state?.playing} time={songProgressionBarWidth} duration={state?.song?.duration} />
+         <TrackControls handleClick={handleSelectPoint} playing={state?.playing} time={songProgress} duration={state?.song?.duration} />
          <VolumeControls setVolume={setVolume} volume={volume} />
       </TrackWrapper>
    );

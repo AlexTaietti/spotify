@@ -70,7 +70,7 @@ type AlbumDataProps = {
 
 export const AlbumData: React.FC<AlbumDataProps> = ({ displayTracks, playlist, song }) => {
 
-   const { dispatch } = usePlayback();
+   const { state, dispatch } = usePlayback();
 
    const handleLike = () => {
 
@@ -82,11 +82,39 @@ export const AlbumData: React.FC<AlbumDataProps> = ({ displayTracks, playlist, s
 
       if (displayTracks) {
 
-         let songIndexInContextPlaylist;
+         let songIndexInDisplayedPlaylist;
 
          for (let i = 0; i < displayTracks.length; i++) {
 
             if (displayTracks[i].track_id === song.track_id) {
+
+               songIndexInDisplayedPlaylist = i;
+
+               break;
+
+            }
+
+         }
+
+         if (songIndexInDisplayedPlaylist !== undefined) {
+
+            const newPlaylistTracks = [...displayTracks];
+
+            newPlaylistTracks[songIndexInDisplayedPlaylist] = { ...newSongObject };
+
+            dispatch({ type: 'SET_DISPLAY_TRACKS', tracks: newPlaylistTracks });
+
+         }
+
+      }
+
+      if (state?.playlist?.tracks) {
+
+         let songIndexInContextPlaylist;
+
+         for (let i = 0; i < state.playlist.tracks.length; i++) {
+
+            if (state.playlist.tracks[i].track_id === song.track_id) {
 
                songIndexInContextPlaylist = i;
 
@@ -98,11 +126,13 @@ export const AlbumData: React.FC<AlbumDataProps> = ({ displayTracks, playlist, s
 
          if (songIndexInContextPlaylist !== undefined) {
 
-            const newPlaylistTracks = [...displayTracks];
+            const newPlaylistTracks = [...state.playlist.tracks];
 
             newPlaylistTracks[songIndexInContextPlaylist] = { ...newSongObject };
 
-            dispatch({ type: 'SET_DISPLAY_TRACKS', tracks: newPlaylistTracks });
+            const newPlaylist = { ...state.playlist, tracks: newPlaylistTracks }
+
+            dispatch({ type: 'SET_PLAYLIST', playlist: newPlaylist });
 
          }
 

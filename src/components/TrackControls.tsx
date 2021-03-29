@@ -71,13 +71,13 @@ type TrackControlsProps = {
 
    duration?: number;
 
-   setSongProgress: React.Dispatch<React.SetStateAction<number>>;
+   handleClick: (value: number) => void;
 
    playing?: boolean;
 
 };
 
-export const TrackControls: React.FC<TrackControlsProps> = ({ setSongProgress, time, duration, playing }) => {
+export const TrackControls: React.FC<TrackControlsProps> = ({ handleClick, time, duration, playing }) => {
 
    const { state, dispatch } = usePlayback();
 
@@ -154,7 +154,7 @@ export const TrackControls: React.FC<TrackControlsProps> = ({ setSongProgress, t
          </Controls>
          <Progress>
             <span>{time && duration ? formatTime(time * (duration / 100)) : '--:--'}</span>
-            <VariableBar callback={setSongProgress} width='70%' value={time || 0} />
+            <VariableBar callback={handleClick} width='70%' value={time || 0} />
             <span>{formatTime(duration) || '--:--'}</span>
          </Progress>
       </ControlsContainer>

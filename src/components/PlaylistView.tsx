@@ -65,11 +65,12 @@ export const PlaylistView: React.FC = () => {
 
    const [filter, setFilter] = useState('');
 
+   //update the global state with the new displayed playlist
    useEffect(() => {
 
       if (playlistInfo) {
 
-         if (!state?.displayTracks || filter.length <= 2) {
+         if (filter.length <= 2) {
 
             dispatch({ type: 'SET_DISPLAY_TRACKS', tracks: [...playlistInfo.tracks] });
 
@@ -93,8 +94,16 @@ export const PlaylistView: React.FC = () => {
 
       }
 
-   }, [filter, playlistInfo]);
+   }, [filter, playlistInfo, dispatch]);
 
+   // make sure we don't flash the old playlist when we load the view next time
+   useEffect(() => {
+
+      return () => dispatch({ type: 'SET_DISPLAY_TRACKS', tracks: undefined });
+
+   }, [dispatch]);
+
+   //update the global song and playlist objects
    const updateSong = async (song: SongData) => {
 
       if ((playlistInfo && playlistInfo.tracks) && state?.song?.track_id !== song.track_id) {
