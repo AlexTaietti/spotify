@@ -15,8 +15,6 @@ export const LikedSongsView: React.FC = () => {
 
       if (likedTracks?.liked_tracks) {
 
-         console.log(likedTracks);
-
          const headerData = {
             image: likedHeader,
             id: -1,
@@ -32,6 +30,6 @@ export const LikedSongsView: React.FC = () => {
 
    }, [likedTracks]);
 
-   return (headerData && tracks?.length) ? <PlaylistTracks headerData={headerData} tracks={tracks} /> : null;
+   return (headerData && tracks) ? <PlaylistTracks onEmpty={'💔'} headerData={headerData} tracks={tracks} /> : null;
 
 };

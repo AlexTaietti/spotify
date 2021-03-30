@@ -22,7 +22,9 @@ export const notifySongApi = (playlistID: number, songID: number) => {
 
    const url = `notify_played/${playlistID}/${songID}`;
 
-   axiosInstance.post(url);
+   const request = axiosInstance.post(url);
+
+   request.catch(error => console.error(error));
 
 };
 
@@ -30,7 +32,9 @@ export const likeSongApi = (songObject: SongData) => {
 
    const url = `liked_tracks/${songObject.track_id}?status=${songObject.is_liked}`;
 
-   axiosInstance.post(url);
+   const request = axiosInstance.post(url);
+
+   request.catch(error => console.error(error));
 
 };
 

@@ -6,6 +6,7 @@ import { Songs } from './Songs';
 import { usePlayback } from '../state/PlaybackContext';
 import { notifySongApi } from '../helpers/utils';
 import { SongData } from './PlaylistView';
+import { EmptyPlaylist } from './EmptyPlaylist';
 
 const PlaylistViewWrapper = styled.div`
 
@@ -39,13 +40,14 @@ export type PlaylistMetaData = {
 };
 
 type PlaylistTracksProps = {
+   onEmpty?: string;
    headerData: PlaylistMetaData;
    tracks: SongData[];
 }
 
 type SongFilterableProp = KeysMatching<SongData, string>;
 
-export const PlaylistTracks: React.FC<PlaylistTracksProps> = ({ headerData, tracks }) => {
+export const PlaylistTracks: React.FC<PlaylistTracksProps> = ({ headerData, tracks, onEmpty }) => {
 
    const { state, dispatch } = usePlayback();
 
@@ -53,6 +55,8 @@ export const PlaylistTracks: React.FC<PlaylistTracksProps> = ({ headerData, trac
 
    //update the global state with the new displayed playlist
    useEffect(() => {
+
+      console.log(tracks);
 
       if (tracks) {
 
@@ -114,7 +118,7 @@ export const PlaylistTracks: React.FC<PlaylistTracksProps> = ({ headerData, trac
    return (
 
 
-      (headerData && state?.displayTracks) ?
+      (headerData && state?.displayTracks && state?.displayTracks.length) ?
 
          <PlaylistViewWrapper>
             <PlaylistHeader imageUrl={headerData.image} name={headerData.name} description={headerData.description} songNumber={headerData.songsNumber} duration={headerData.duration} />
@@ -122,7 +126,7 @@ export const PlaylistTracks: React.FC<PlaylistTracksProps> = ({ headerData, trac
                <Filter setFilter={setFilter} />
                <Songs updateSong={updateSong} songs={state.displayTracks} />
             </SongsSection>
-         </PlaylistViewWrapper> : null
+         </PlaylistViewWrapper> : ((state?.displayTracks?.length === 0) ? <EmptyPlaylist message={onEmpty} /> : null)
 
    );
 
