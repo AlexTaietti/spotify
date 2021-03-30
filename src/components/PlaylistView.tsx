@@ -127,23 +127,16 @@ export const PlaylistView: React.FC = () => {
 
    return (
 
-      <PlaylistViewWrapper>
 
-         {
+      (playlistInfo && state?.displayTracks) ?
 
-            (playlistInfo && state?.displayTracks) && //use a fragment just so I can conditionally render even in case of failed fetch attempt
-
-            <>
-               <PlaylistHeader imageUrl={locationState.image} name={locationState.name} description={locationState.description} songNumber={playlistInfo.tracks.length} duration={playlistInfo.playlist_duration} />
-               <SongsSection>
-                  <Filter setFilter={setFilter} />
-                  <Songs updateSong={updateSong} songs={state.displayTracks} />
-               </SongsSection>
-            </>
-
-         }
-
-      </PlaylistViewWrapper>
+         <PlaylistViewWrapper>
+            <PlaylistHeader imageUrl={locationState.image} name={locationState.name} description={locationState.description} songNumber={playlistInfo.tracks.length} duration={playlistInfo.playlist_duration} />
+            <SongsSection>
+               <Filter setFilter={setFilter} />
+               <Songs updateSong={updateSong} songs={state.displayTracks} />
+            </SongsSection>
+         </PlaylistViewWrapper> : null
 
    );
 
