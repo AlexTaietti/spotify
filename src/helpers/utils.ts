@@ -24,8 +24,6 @@ export const notifySongApi = (playlistID: number, songID: number) => {
 
    const request = axiosInstance.post(url);
 
-   request.catch(error => console.error(error));
-
 };
 
 export const likeSongApi = (songObject: SongData) => {
@@ -33,8 +31,6 @@ export const likeSongApi = (songObject: SongData) => {
    const url = `liked_tracks/${songObject.track_id}?status=${songObject.is_liked}`;
 
    const request = axiosInstance.post(url);
-
-   request.catch(error => console.error(error));
 
 };
 
