@@ -56,8 +56,6 @@ export const PlaylistTracks: React.FC<PlaylistTracksProps> = ({ headerData, trac
    //update the global state with the new displayed playlist
    useEffect(() => {
 
-      console.log(tracks);
-
       if (tracks) {
 
          if (filter.length <= 2) {
