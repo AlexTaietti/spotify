@@ -19,11 +19,16 @@ export const Home: React.FC = () => {
    const mood = usePlaylistData('mood_playlists?limit=10');
 
    return (
-      <HomeWrapper>
-         { recentlyPlayed && <Carousel title="Recently played" data={recentlyPlayed} />}
-         { featured && <Carousel title="Featured playlists" data={featured} />}
-         { mood && <Carousel title="Mood" data={mood} />}
-      </HomeWrapper>
+
+      (recentlyPlayed || featured || mood) ?
+
+         <HomeWrapper>
+
+            {recentlyPlayed && <Carousel title="Recently played" data={recentlyPlayed} />}
+            {featured && <Carousel title="Featured playlists" data={featured} />}
+            {mood && <Carousel title="Mood" data={mood} />}
+
+         </HomeWrapper> : null
    )
 
 };

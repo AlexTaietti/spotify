@@ -69,9 +69,9 @@ const ContrastOverlay = styled.div`
 type PlaylistHeaderProps = {
    imageUrl: string;
    name: string;
-   description: string;
+   description?: string;
    songNumber: number;
-   duration: string;
+   duration?: string;
 }
 
 export const PlaylistHeader: React.FC<PlaylistHeaderProps> = ({ imageUrl, name, description, songNumber, duration }) => {
@@ -81,11 +81,11 @@ export const PlaylistHeader: React.FC<PlaylistHeaderProps> = ({ imageUrl, name, 
       <Header imageUrl={imageUrl}>
          <div className='info-container'>
             <h1>{name}</h1>
-            <h2>{description}</h2>
+            {description && <h2>{description}</h2>}
          </div>
          <div className='info-container'>
             <h1>{songNumber} <span>songs</span></h1>
-            <h2>{duration}</h2>
+            {duration && <h2>{duration}</h2>}
          </div>
          <ContrastOverlay />
       </Header>
