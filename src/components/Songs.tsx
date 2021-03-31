@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SongData } from './PlaylistView';
+import { SongsProps } from '../@types';
 import { SongRow } from './SongRow';
 
 export const Songs: React.FC<SongsProps> = ({ songs, updateSong }) => {
@@ -23,11 +23,6 @@ export const Songs: React.FC<SongsProps> = ({ songs, updateSong }) => {
    );
 
 };
-
-type SongsProps = {
-   songs: Array<SongData>;
-   updateSong: (song: SongData) => void;
-}
 
 const SongsTable = styled.table`
 

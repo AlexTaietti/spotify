@@ -1,5 +1,6 @@
 import { Link, useRouteMatch } from 'react-router-dom';
 import styled from 'styled-components';
+import { NavItemProps } from '../@types';
 
 export const NavItem: React.FC<NavItemProps> = ({ match, linkText, to, icon, iconAlt, exact = false }) => {
 
@@ -17,15 +18,6 @@ export const NavItem: React.FC<NavItemProps> = ({ match, linkText, to, icon, ico
       </Item>
    );
 
-};
-
-type NavItemProps = {
-   linkText: string;
-   icon: string;
-   iconAlt: string;
-   to: string;
-   exact?: boolean;
-   match?: string | string[];
 };
 
 const Item = styled.li`

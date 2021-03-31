@@ -1,9 +1,9 @@
 import React, { useReducer } from 'react';
-import { SongData } from '../components/PlaylistView';
+import { PlaybackState, Action } from '../@types';
 
 const PlaybackContext = React.createContext<
 
-   { state: PlaybackState; dispatch: PlaybackDispatch } | undefined
+   { state: PlaybackState; dispatch: (action: Action) => void } | undefined
 
 >(undefined);
 
@@ -49,7 +49,7 @@ const playbackReducer = (state: PlaybackState, action: Action): PlaybackState =>
 
 };
 
-const PlaybackProvider = ({ children }: PlaybackProviderProps) => {
+const PlaybackProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
    const [playbackState, playbackDispatch] = useReducer(playbackReducer, {});
 
@@ -72,33 +72,5 @@ const usePlayback = () => {
    return context;
 
 };
-
-export type playlistContextData = {
-   id: number;
-   tracks: Array<SongData>;
-   image: string;
-};
-
-type Action = { type: 'SET_PLAYLIST', playlist: playlistContextData } | { type: 'SET_DISPLAY_TRACKS', tracks: SongData[] | undefined } | { type: 'SET_SONG', song: SongData } | { type: 'PAUSE' } | { type: 'PLAY' };
-
-type PlaybackDispatch = (action: Action) => void
-
-type PlaybackState = {
-
-   playlist?: playlistContextData;
-
-   displayTracks?: SongData[];
-
-   song?: SongData;
-
-   playing?: boolean;
-
-   lastSong?: number;
-
-   lastPlaylist?: number;
-
-};
-
-type PlaybackProviderProps = { children: React.ReactNode };
 
 export { PlaybackProvider, usePlayback };

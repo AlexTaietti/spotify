@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { BarProps, VariableBarProps } from '../@types';
+
 export const VariableBar: React.FC<VariableBarProps> = ({ value, width, callback }) => {
 
    const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -16,17 +18,6 @@ export const VariableBar: React.FC<VariableBarProps> = ({ value, width, callback
 
    return <Bar onClick={handleClick} width={width} value={value} />;
 
-};
-
-type VariableBarProps = {
-   value: number;
-   width: string;
-   callback?: (value: number) => any | React.Dispatch<React.SetStateAction<number>>;
-};
-
-type BarProps = {
-   width: string;
-   value: number;
 };
 
 const Bar = styled.div`

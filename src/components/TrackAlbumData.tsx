@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import notLikedIcon from '../assets/images/ui_icons/not_liked.png';
 import likedIcon from '../assets/images/ui_icons/liked.png';
-import { playlistContextData, usePlayback } from '../state/PlaybackContext';
+import { usePlayback } from '../state/PlaybackContext';
 import { likeSongApi } from '../helpers/utils';
-import { SongData } from './PlaylistView';
+import { AlbumDataProps } from '../@types';
 
 export const AlbumData: React.FC<AlbumDataProps> = ({ displayTracks, playlist, song }) => {
 
@@ -90,12 +90,6 @@ export const AlbumData: React.FC<AlbumDataProps> = ({ displayTracks, playlist, s
       </AlbumDataContainer>
    );
 
-};
-
-type AlbumDataProps = {
-   displayTracks?: SongData[];
-   playlist: playlistContextData;
-   song: SongData;
 };
 
 const AlbumDataContainer = styled.div`

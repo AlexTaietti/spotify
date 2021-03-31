@@ -5,7 +5,7 @@ import { Filter } from './Filter';
 import { Songs } from './Songs';
 import { usePlayback } from '../state/PlaybackContext';
 import { notifySongApi } from '../helpers/utils';
-import { SongData } from './PlaylistView';
+import { SongData, PlaylistTracksProps, SongFilterableProp } from '../@types';
 import { EmptyPlaylist } from './EmptyPlaylist';
 
 export const PlaylistTracks: React.FC<PlaylistTracksProps> = ({ headerData, tracks, onEmpty }) => {
@@ -90,26 +90,6 @@ export const PlaylistTracks: React.FC<PlaylistTracksProps> = ({ headerData, trac
    );
 
 };
-
-
-export type PlaylistMetaData = {
-   id: number;
-   image: string;
-   name: string;
-   description?: string;
-   duration?: string;
-   songsNumber: number;
-};
-
-type KeysMatching<T, V> = { [K in keyof T]: T[K] extends V ? K : never }[keyof T];
-
-type PlaylistTracksProps = {
-   onEmpty?: string;
-   headerData: PlaylistMetaData;
-   tracks: SongData[];
-}
-
-type SongFilterableProp = KeysMatching<SongData, string>;
 
 const PlaylistViewWrapper = styled.div`
 

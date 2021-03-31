@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
+//this component is not used in the app but it's too cool to scrap :)
 export const Spinner: React.FC = () => {
 
    return (

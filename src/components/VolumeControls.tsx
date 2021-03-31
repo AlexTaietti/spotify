@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import volumeIcon from '../assets/images/ui_icons/volume_icon.png';
+import { VolumeProps } from '../@types';
 import { VariableBar } from "./VariableBar";
 
 export const VolumeControls: React.FC<VolumeProps> = ({ setVolume, volume }) => {
@@ -11,11 +12,6 @@ export const VolumeControls: React.FC<VolumeProps> = ({ setVolume, volume }) => 
       </VolumeContainer>
    );
 
-};
-
-type VolumeProps = {
-   volume: number;
-   setVolume: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const VolumeContainer = styled.div`

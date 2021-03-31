@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { formatSlug, getResource, notifySongApi } from '../helpers/utils';
 import { Link } from 'react-router-dom';
-import { playlistContextData, usePlayback } from '../state/PlaybackContext';
 import pauseIcon from '../assets/images/ui_icons/light_pause_icon.png';
 import playIcon from '../assets/images/ui_icons/light_play_icon.png';
+import { usePlayback } from '../state/PlaybackContext';
+import { playlistContextData, PlayListData } from '../@types';
 
-export const PlaylistCard: React.FC<PlaylistCardProps> = ({ data }) => {
+export const PlaylistCard: React.FC<{ data: PlayListData }> = ({ data }) => {
 
    const [playlistSlug, setPlaylistSlug] = useState<string>();
 
@@ -87,23 +88,6 @@ export const PlaylistCard: React.FC<PlaylistCardProps> = ({ data }) => {
 
 };
 
-
-export type PlayListData = {
-   description: string;
-   image_url: string;
-   name: string;
-   playlist_id: number;
-};
-
-type PlaylistCardProps = {
-   data: PlayListData;
-};
-
-
-type ThumbnailProps = {
-   active: boolean;
-};
-
 const Thumbnail = styled.div`
 
    position: relative;
@@ -137,7 +121,7 @@ const Thumbnail = styled.div`
       z-index: 1;
       height: 50px;
       width: 50px;
-      background: url(${({ active }: ThumbnailProps) => active ? pauseIcon : playIcon}) no-repeat center/cover;
+      background: url(${({ active }: { active: boolean }) => active ? pauseIcon : playIcon}) no-repeat center/cover;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);

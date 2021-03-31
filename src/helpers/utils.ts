@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SongData } from "../components/PlaylistView";
+import { SongData } from "../@types";
 
 export const axiosInstance = axios.create({
    baseURL: 'http://api.sprintt.co/spotify',

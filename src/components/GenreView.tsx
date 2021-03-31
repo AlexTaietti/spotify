@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import { usePlaylistData } from '../state/hooks/usePlaylistData';
+import { GenresLocationState } from '../@types';
 import { PlaylistCard } from './PlaylistCard';
 import { SectionHeader } from './SectionHeader';
 
@@ -25,12 +26,6 @@ export const GenreView: React.FC = () => {
 
    );
 
-};
-
-type GenresLocationState = {
-   image: string;
-   name: string;
-   id: number;
 };
 
 const GenreViewWrapper = styled.div`

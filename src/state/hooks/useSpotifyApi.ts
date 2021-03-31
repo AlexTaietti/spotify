@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { axiosInstance } from '../../helpers/utils';
+import { ApiResponse } from '../../@types';
 
 export function useSpotifyApi<DataType>(endpoint: string): ApiResponse<DataType> {
 
@@ -22,9 +23,4 @@ export function useSpotifyApi<DataType>(endpoint: string): ApiResponse<DataType>
       error
    };
 
-};
-
-type ApiResponse<T> = {
-   response: T | undefined;
-   error: boolean;
 };

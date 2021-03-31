@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { formatSlug } from '../helpers/utils';
-import { GenreData } from './Browse';
+import { Link } from 'react-router-dom';
+import { GenreData, CardProps } from '../@types';
 
 export const GenreCard: React.FC<{ data: GenreData }> = ({ data }) => {
 
@@ -29,11 +29,6 @@ export const GenreCard: React.FC<{ data: GenreData }> = ({ data }) => {
       </Card>
    );
 
-};
-
-type CardProps = {
-   name: string;
-   image: string;
 };
 
 const Card = styled.div`

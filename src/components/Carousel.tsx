@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { CarouselProps, PlayListData } from '../@types';
 import { PlaylistCard } from './PlaylistCard';
-import { PlayListData } from './PlaylistCard';
 
 export const Carousel: React.FC<CarouselProps> = ({ data, title }) => {
 
@@ -47,11 +47,6 @@ export const Carousel: React.FC<CarouselProps> = ({ data, title }) => {
 
    );
 
-};
-
-type CarouselProps = {
-   title: string;
-   data: Array<PlayListData>;
 };
 
 const CarouselContainer = styled.div`

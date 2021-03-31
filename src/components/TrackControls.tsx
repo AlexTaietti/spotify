@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import styled from 'styled-components';
 import { usePlayback } from "../state/PlaybackContext";
 import { formatTime } from '../helpers/utils';
+import { TrackControlsProps } from '../@types';
 import { BackIcon } from './BackIcon';
 import { NextIcon } from './NextIcon';
 import { PauseIcon } from "./PauseIcon";
@@ -91,13 +92,6 @@ export const TrackControls: React.FC<TrackControlsProps> = ({ handleClick, time,
       </ControlsContainer>
    );
 
-};
-
-type TrackControlsProps = {
-   time?: number;
-   duration?: number;
-   handleClick: (value: number) => void;
-   playing?: boolean;
 };
 
 const ControlsContainer = styled.div`

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { usePlayback } from '../state/PlaybackContext';
 import { likeSongApi } from '../helpers/utils';
-import { SongData } from './PlaylistView';
+import { SongRowProps } from '../@types';
 import { HeartIcon } from './HeartIcon';
 import { PlaystateIcon } from './PlaystateIcon';
 
@@ -103,11 +103,6 @@ export const SongRow: React.FC<SongRowProps> = ({ song, updateSong }: SongRowPro
       </Row>
    );
 
-};
-
-type SongRowProps = {
-   song: SongData;
-   updateSong: (song: SongData) => void;
 };
 
 const Row = styled.tr`

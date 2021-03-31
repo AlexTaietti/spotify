@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { PlaylistHeaderProps } from '../@types';
 
 export const SectionHeader: React.FC<PlaylistHeaderProps> = ({ imageUrl, name, description, songNumber, duration, itemsLabel = 'songs' }) => {
 
@@ -18,19 +19,6 @@ export const SectionHeader: React.FC<PlaylistHeaderProps> = ({ imageUrl, name, d
 
 };
 
-type PlaylistHeaderProps = {
-   imageUrl: string;
-   name: string;
-   description?: string;
-   songNumber: number;
-   duration?: string;
-   itemsLabel?: string;
-};
-
-type StyledHeaderProps = {
-   imageUrl: string;
-};
-
 const Header = styled.header`
 
    display: flex;
@@ -40,7 +28,7 @@ const Header = styled.header`
    align-items: start;
    height: 220px;
    width: 100%;
-   background: url(${(props: StyledHeaderProps) => props.imageUrl});
+   background: url(${(props: { imageUrl: string }) => props.imageUrl});
    background-repeat: no-repeat;
    background-size: cover;
    background-position: center;

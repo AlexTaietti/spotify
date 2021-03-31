@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import { useSpotifyApi } from '../state/hooks/useSpotifyApi';
+import { GenreData } from '../@types';
 import { GenreCard } from './GenreCard';
 
 export const Browse: React.FC = () => {
 
-   const { response: genreData } = useSpotifyApi<GenresApiObject>('categories');
+   const { response: genreData } = useSpotifyApi<{ categories: Array<GenreData> }>('categories');
 
    return (
 
@@ -19,16 +20,6 @@ export const Browse: React.FC = () => {
 
    );
 
-};
-
-export type GenreData = {
-   category_id: number;
-   category_name: string;
-   image_url: string;
-};
-
-export type GenresApiObject = {
-   categories: GenreData[];
 };
 
 const GenreContainer = styled.div`

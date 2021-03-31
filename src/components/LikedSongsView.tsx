@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import likedHeader from '../assets/images/liked_header.png';
 import { useSpotifyApi } from '../state/hooks/useSpotifyApi';
-import { SongData } from './PlaylistView';
-import { PlaylistTracks, PlaylistMetaData } from './PlaylistTracks';
+import { SongData, PlaylistMetaData } from '../@types';
+import { PlaylistTracks } from './PlaylistTracks';
 
 export const LikedSongsView: React.FC = () => {
 
-   const { response: likedTracks } = useSpotifyApi<{ liked_tracks: SongData[] }>(`liked_tracks`);
+   const { response: likedTracks } = useSpotifyApi<{ liked_tracks: Array<SongData> }>(`liked_tracks`);
 
    const [headerData, setHeaderData] = useState<PlaylistMetaData>();
-   const [tracks, setTracks] = useState<SongData[]>();
+   const [tracks, setTracks] = useState<Array<SongData>>();
 
    useEffect(() => {
 
