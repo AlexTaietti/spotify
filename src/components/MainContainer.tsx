@@ -4,6 +4,7 @@ import { Home } from './Home';
 import { Browse } from './Browse';
 import { LikedSongsView } from './LikedSongsView';
 import { PlaylistView } from './PlaylistView';
+import { GenreView } from './GenreView';
 
 const Main = styled.div`
 
@@ -31,7 +32,8 @@ export const MainContainer: React.FC = () => {
          <Route exact path="/" component={Home} />
          <Route path="/browse" component={Browse} />
          <Route path="/liked-songs" component={LikedSongsView} />
-         <Route path="/playlist/:playlistName" component={PlaylistView} />
+         <Route path="/playlist/:playlistID" component={PlaylistView} />
+         <Route path="/genre/:genreID" component={GenreView} />
       </Main >
    );
 
