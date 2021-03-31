@@ -47,9 +47,9 @@ export const NavBar: React.FC = () => {
             </Link>
          </LogoContainer>
          <Nav>
-            <NavItem to='/' exact={true} linkText='Home' iconAlt='home icon' icon={homeIcon} />
-            <NavItem to='/browse' linkText='Browse' iconAlt='browse icon' icon={browseIcon} />
-            <NavItem to='/liked-songs' linkText='Liked Songs' iconAlt='Liked songs icon' icon={LikedIcon} />
+            <NavItem exact={true} match={['/playlist/:playlistID', '/']} to='/' linkText='Home' iconAlt='home icon' icon={homeIcon} />
+            <NavItem match={['/browse', '/genre/:genreID']} to='/browse' linkText='Browse' iconAlt='browse icon' icon={browseIcon} />
+            <NavItem match={'/liked-songs'} to='/liked-songs' linkText='Liked Songs' iconAlt='Liked songs icon' icon={LikedIcon} />
          </Nav>
       </NavBarStyled>
 

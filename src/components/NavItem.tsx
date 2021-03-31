@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Item = styled.li`
@@ -34,16 +34,22 @@ type NavItemProps = {
    iconAlt: string;
    to: string;
    exact?: boolean;
+   match?: string | string[];
 }
 
-export const NavItem: React.FC<NavItemProps> = ({ linkText, to, icon, iconAlt, exact = false }) => {
+export const NavItem: React.FC<NavItemProps> = ({ match, linkText, to, icon, iconAlt, exact = false }) => {
+
+   const urlMatch = useRouteMatch({
+      path: match,
+      exact: exact
+   });
 
    return (
       <Item>
-         <NavLink activeClassName="active" exact={exact} to={to}>
+         <Link className={urlMatch ? "active" : 'default'} to={to}>
             <i><img alt={iconAlt} src={icon} /></i>
             <span>{linkText}</span>
-         </NavLink>
+         </Link>
       </Item>
 
    )

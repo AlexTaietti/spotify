@@ -72,9 +72,10 @@ type PlaylistHeaderProps = {
    description?: string;
    songNumber: number;
    duration?: string;
+   itemsLabel?: string;
 }
 
-export const PlaylistHeader: React.FC<PlaylistHeaderProps> = ({ imageUrl, name, description, songNumber, duration }) => {
+export const PlaylistHeader: React.FC<PlaylistHeaderProps> = ({ imageUrl, name, description, songNumber, duration, itemsLabel = 'songs' }) => {
 
    return (
 
@@ -84,7 +85,7 @@ export const PlaylistHeader: React.FC<PlaylistHeaderProps> = ({ imageUrl, name, 
             {description && <h2>{description}</h2>}
          </div>
          <div className='info-container'>
-            <h1>{songNumber} <span>songs</span></h1>
+            <h1>{songNumber} <span>{itemsLabel}</span></h1>
             {duration && <h2>{duration}</h2>}
          </div>
          <ContrastOverlay />
