@@ -1,8 +1,10 @@
 import axios from "axios";
 import { SongData } from "../@types";
 
+const sprinttBaseURL = 'https://api.sprintt.co/spotify';
+
 export const axiosInstance = axios.create({
-   baseURL: 'http://api.sprintt.co/spotify',
+   baseURL: sprinttBaseURL,
    headers: { 'user-access-token': process.env.REACT_APP_SPOTIFY_TOKEN }
 });
 
@@ -40,7 +42,7 @@ export const makeSongUrl = (id: number) => {
 
    const token = getEncryptedToken(process.env.REACT_APP_SPOTIFY_TOKEN);
 
-   const url = `http://api.sprintt.co/spotify/play/${id}?access=${token}`;
+   const url = `${sprinttBaseURL}/play/${id}?access=${token}`;
 
    return url;
 
