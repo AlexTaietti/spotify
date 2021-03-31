@@ -15,9 +15,9 @@ export const TrackControls: React.FC<TrackControlsProps> = ({ handleClick, time,
 
    const playNextSong = useCallback(() => { //TODO: refactor me!
 
-      console.log('playing next...');
+      if (state?.playlist?.tracks.length && state.playlist.tracks.length > 1) {
 
-      if (state?.playlist?.tracks.length) {
+         console.log('playing next...');
 
          for (let i = 0; i < state.playlist.tracks.length; i++) {
 
@@ -47,9 +47,9 @@ export const TrackControls: React.FC<TrackControlsProps> = ({ handleClick, time,
 
    const playPreviousSong = useCallback(() => { //TODO: refactor me!
 
-      console.log('playing previous...');
+      if (state?.playlist?.tracks.length && state.playlist.tracks.length > 1) {
 
-      if (state?.playlist?.tracks.length) {
+         console.log('playing previous...');
 
          for (let i = 0; i < state.playlist.tracks.length; i++) {
 

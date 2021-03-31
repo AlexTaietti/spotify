@@ -26,7 +26,7 @@ export const TrackContainer: React.FC = () => {
    //handler for the audio object (will be provided with a fresh scope whenever either the global song object or the global playlist object changes)
    const songEndHandler = useCallback(() => {
 
-      if (state?.playlist?.tracks.length) {
+      if (state?.playlist?.tracks.length && state.playlist.tracks.length > 1) {
 
          for (let i = 0; i < state.playlist.tracks.length; i++) {
 
@@ -48,7 +48,7 @@ export const TrackContainer: React.FC = () => {
 
          }
 
-      }
+      } else { dispatch({ type: 'PAUSE' }); }
 
    }, [state?.playlist, state?.song, dispatch]);
 
