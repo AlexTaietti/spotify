@@ -1,6 +1,33 @@
-import { SongData } from './PlaylistView';
 import styled from 'styled-components';
+import { SongData } from './PlaylistView';
 import { SongRow } from './SongRow';
+
+export const Songs: React.FC<SongsProps> = ({ songs, updateSong }) => {
+
+   return (
+      <SongsTable>
+         <TableHeadings>
+            <tr>
+               <th>{ /* playstate icon column header */}</th>
+               <th>{ /* heart icon column header */}</th>
+               <th>title</th>
+               <th>artist</th>
+               <th>album</th>
+               <th>release date</th>
+            </tr>
+         </TableHeadings>
+         <tbody>
+            {songs.map(song => <SongRow updateSong={updateSong} key={song.track_id} song={song} />)}
+         </tbody>
+      </SongsTable>
+   );
+
+};
+
+type SongsProps = {
+   songs: Array<SongData>;
+   updateSong: (song: SongData) => void;
+}
 
 const SongsTable = styled.table`
 
@@ -37,30 +64,3 @@ const TableHeadings = styled.thead`
    }
 
 `;
-
-type SongsProps = {
-   songs: Array<SongData>;
-   updateSong: (song: SongData) => void;
-}
-
-export const Songs: React.FC<SongsProps> = ({ songs, updateSong }) => {
-
-   return (
-      <SongsTable>
-         <TableHeadings>
-            <tr>
-               <th>{ /* playstate icon column header */}</th>
-               <th>{ /* heart icon column header */}</th>
-               <th>title</th>
-               <th>artist</th>
-               <th>album</th>
-               <th>release date</th>
-            </tr>
-         </TableHeadings>
-         <tbody>
-            {songs.map(song => <SongRow updateSong={updateSong} key={song.track_id} song={song} />)}
-         </tbody>
-      </SongsTable>
-   );
-
-};

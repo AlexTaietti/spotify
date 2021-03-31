@@ -34,18 +34,6 @@ export const likeSongApi = (songObject: SongData) => {
 
 };
 
-const getEncryptedToken = (token: string) => {
-
-   let date = new Date();
-
-   let utcTime = `${date.getUTCHours()}:${date.getUTCMinutes()}:${date.getUTCSeconds()}`
-
-   let stringToEncrypt = `${token}===${utcTime}`
-
-   return btoa(stringToEncrypt)
-
-};
-
 export const makeSongUrl = (id: number) => {
 
    if (!process.env.REACT_APP_SPOTIFY_TOKEN) throw new Error("api token not found :(");
@@ -69,5 +57,17 @@ export const formatTime = (time: number | undefined) => {
    const seconds = leftOverSeconds < 10 ? '0' + leftOverSeconds : leftOverSeconds;
 
    return `${minutes}:${seconds}`;
+
+};
+
+const getEncryptedToken = (token: string) => {
+
+   const date = new Date();
+
+   const utcTime = `${date.getUTCHours()}:${date.getUTCMinutes()}:${date.getUTCSeconds()}`;
+
+   const stringToEncrypt = `${token}===${utcTime}`;
+
+   return btoa(stringToEncrypt);
 
 };

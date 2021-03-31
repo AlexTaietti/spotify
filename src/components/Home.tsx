@@ -1,15 +1,6 @@
 import styled from 'styled-components';
-import { Carousel } from './Carousel';
 import { usePlaylistData } from '../state/hooks/usePlaylistData';
-
-const HomeWrapper = styled.div`
-
-   position: relative;
-   width: 100%;
-   min-height: 100%;
-   padding: 100px 115px;
-
-`;
+import { Carousel } from './Carousel';
 
 export const Home: React.FC = () => {
 
@@ -29,6 +20,16 @@ export const Home: React.FC = () => {
             {mood && <Carousel title="Mood" data={mood} />}
 
          </HomeWrapper> : null
-   )
+
+   );
 
 };
+
+const HomeWrapper = styled.div`
+
+   position: relative;
+   width: 100%;
+   min-height: 100%;
+   padding: 100px 115px;
+
+`;

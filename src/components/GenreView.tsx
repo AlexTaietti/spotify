@@ -1,15 +1,37 @@
-import React from "react";
+import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import { usePlaylistData } from '../state/hooks/usePlaylistData';
-import styled from 'styled-components';
 import { PlaylistCard } from './PlaylistCard';
-import { PlaylistHeader } from './PlaylistHeader';
+import { SectionHeader } from './SectionHeader';
+
+export const GenreView: React.FC = () => {
+
+   const { state: locationState } = useLocation<GenresLocationState>();
+
+   const playlists = usePlaylistData(`category_playlists/${locationState.id}`);
+
+   return (
+
+      playlists ?
+
+         <GenreViewWrapper>
+            <SectionHeader imageUrl={locationState.image} name={locationState.name} itemsLabel={'playlists'} songNumber={playlists.length} />
+            <PlaylistsTableWrapper>
+               <PlaylistsTable>
+                  {playlists.map(playlist => <PlaylistCard key={playlist.playlist_id} data={playlist} />)}
+               </PlaylistsTable>
+            </PlaylistsTableWrapper>
+         </GenreViewWrapper> : null
+
+   );
+
+};
 
 type GenresLocationState = {
    image: string;
    name: string;
    id: number;
-}
+};
 
 const GenreViewWrapper = styled.div`
 
@@ -39,26 +61,3 @@ const PlaylistsTable = styled.div`
    row-gap: 50px;
 
 `;
-
-export const GenreView: React.FC = () => {
-
-   const { state: locationState } = useLocation<GenresLocationState>();
-
-   const playlists = usePlaylistData(`category_playlists/${locationState.id}`);
-
-   return (
-
-      playlists ?
-
-         <GenreViewWrapper>
-            <PlaylistHeader imageUrl={locationState.image} name={locationState.name} itemsLabel={'playlists'} songNumber={playlists.length} />
-            <PlaylistsTableWrapper>
-               <PlaylistsTable>
-                  {playlists.map(playlist => <PlaylistCard key={playlist.playlist_id} data={playlist} />)}
-               </PlaylistsTable>
-            </PlaylistsTableWrapper>
-         </GenreViewWrapper> : null
-
-   );
-
-};

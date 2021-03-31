@@ -6,15 +6,6 @@ import { AlbumData } from './TrackAlbumData';
 import { TrackControls } from './TrackControls';
 import { VolumeControls } from './VolumeControls';
 
-const TrackWrapper = styled.div`
-
-   grid-area: track;
-   display: block;
-   position: relative;
-   box-shadow: 0 0 5px #f1f1f1;
-   
-`;
-
 export const TrackContainer: React.FC = () => {
 
    const { state, dispatch } = usePlayback();
@@ -166,3 +157,12 @@ export const TrackContainer: React.FC = () => {
    );
 
 };
+
+const TrackWrapper = styled.footer`
+
+   grid-area: track;
+   display: block;
+   position: relative;
+   box-shadow: 0 0 5px #f1f1f1;
+   
+`;

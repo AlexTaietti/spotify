@@ -1,6 +1,33 @@
 import { Link, useRouteMatch } from 'react-router-dom';
 import styled from 'styled-components';
 
+export const NavItem: React.FC<NavItemProps> = ({ match, linkText, to, icon, iconAlt, exact = false }) => {
+
+   const urlMatch = useRouteMatch({
+      path: match,
+      exact: exact
+   });
+
+   return (
+      <Item>
+         <Link className={urlMatch ? "active" : 'default'} to={to}>
+            <i><img alt={iconAlt} src={icon} /></i>
+            <span>{linkText}</span>
+         </Link>
+      </Item>
+   );
+
+};
+
+type NavItemProps = {
+   linkText: string;
+   icon: string;
+   iconAlt: string;
+   to: string;
+   exact?: boolean;
+   match?: string | string[];
+};
+
 const Item = styled.li`
 
    padding: 2px;
@@ -27,31 +54,3 @@ const Item = styled.li`
    .active{ background: rgb(221, 245, 229); }
    
 `;
-
-type NavItemProps = {
-   linkText: string;
-   icon: string;
-   iconAlt: string;
-   to: string;
-   exact?: boolean;
-   match?: string | string[];
-}
-
-export const NavItem: React.FC<NavItemProps> = ({ match, linkText, to, icon, iconAlt, exact = false }) => {
-
-   const urlMatch = useRouteMatch({
-      path: match,
-      exact: exact
-   });
-
-   return (
-      <Item>
-         <Link className={urlMatch ? "active" : 'default'} to={to}>
-            <i><img alt={iconAlt} src={icon} /></i>
-            <span>{linkText}</span>
-         </Link>
-      </Item>
-
-   )
-
-};

@@ -1,8 +1,40 @@
-import styled from 'styled-components';
-import { GenreData } from './Browse';
-import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { formatSlug } from '../helpers/utils';
+import { GenreData } from './Browse';
+
+export const GenreCard: React.FC<{ data: GenreData }> = ({ data }) => {
+
+   const [genreSlug, setGenreSlug] = useState<string>();
+
+   useEffect(() => {
+
+      const slug = formatSlug(data.category_name);
+
+      setGenreSlug(slug);
+
+   }, [data]);
+
+   return (
+      <Card image={data.image_url} name={data.category_name}>
+         <Link to={{
+            pathname: `/genre/${genreSlug}`,
+            state: {
+               id: data.category_id,
+               image: data.image_url,
+               name: data.category_name
+            }
+         }}></Link>
+      </Card>
+   );
+
+};
+
+type CardProps = {
+   name: string;
+   image: string;
+};
 
 const Card = styled.div`
 
@@ -40,35 +72,3 @@ const Card = styled.div`
 
 
 `;
-
-type CardProps = {
-   name: string;
-   image: string;
-};
-
-export const GenreCard: React.FC<{ data: GenreData }> = ({ data }) => {
-
-   const [genreSlug, setGenreSlug] = useState<string>();
-
-   useEffect(() => {
-
-      const slug = formatSlug(data.category_name);
-
-      setGenreSlug(slug);
-
-   }, [data]);
-
-   return (
-      <Card image={data.image_url} name={data.category_name}>
-         <Link to={{
-            pathname: `/genre/${genreSlug}`,
-            state: {
-               id: data.category_id,
-               image: data.image_url,
-               name: data.category_name
-            }
-         }}></Link>
-      </Card>
-   );
-
-}

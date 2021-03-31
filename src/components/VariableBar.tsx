@@ -1,5 +1,33 @@
-import React from 'react';
 import styled from 'styled-components';
+
+export const VariableBar: React.FC<VariableBarProps> = ({ value, width, callback }) => {
+
+   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+
+      const clickOffset = event.clientX;
+      const barOffset = (event.target as HTMLDivElement).getBoundingClientRect().left;
+      const barWidth = (event.target as HTMLDivElement).offsetWidth;
+
+      const newValue = (clickOffset - barOffset) * 100 / barWidth;
+
+      if (callback) callback(newValue);
+
+   };
+
+   return <Bar onClick={handleClick} width={width} value={value} />;
+
+};
+
+type VariableBarProps = {
+   value: number;
+   width: string;
+   callback?: (value: number) => any | React.Dispatch<React.SetStateAction<number>>;
+};
+
+type BarProps = {
+   width: string;
+   value: number;
+};
 
 const Bar = styled.div`
 
@@ -25,32 +53,3 @@ const Bar = styled.div`
    
 
 `;
-
-type VariableBarProps = {
-   value: number;
-   width: string;
-   callback?: (value: number) => any | React.Dispatch<React.SetStateAction<number>>;
-};
-
-type BarProps = {
-   width: string;
-   value: number;
-};
-
-export const VariableBar: React.FC<VariableBarProps> = ({ value, width, callback }) => {
-
-   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-
-      const clickOffset = event.clientX;
-      const barOffset = (event.target as HTMLDivElement).getBoundingClientRect().left;
-      const barWidth = (event.target as HTMLDivElement).offsetWidth;
-
-      const newValue = (clickOffset - barOffset) * 100 / barWidth;
-
-      if (callback) callback(newValue);
-
-   };
-
-   return <Bar onClick={handleClick} width={width} value={value} />;
-
-};

@@ -1,5 +1,14 @@
-import React from 'react';
 import styled from 'styled-components';
+
+export const EmptyPlaylist: React.FC<{ message?: string }> = ({ message }) => {
+
+   return (
+      <EmptyPlaylistMessage>
+         <span>{message || 'Playlist is empty'}</span>
+      </EmptyPlaylistMessage>
+   );
+
+};
 
 const EmptyPlaylistMessage = styled.div`
 
@@ -12,17 +21,8 @@ const EmptyPlaylistMessage = styled.div`
 
    span{
       font-weight: 300;
-      font-size: 7rem;
+      font-size: 5rem;
       color: #191414;
    }
 
 `;
-
-export const EmptyPlaylist: React.FC<{ message?: string }> = ({ message }) => {
-
-   return (
-      <EmptyPlaylistMessage>
-         <span>{message || 'Playlist is empty'}</span>
-      </EmptyPlaylistMessage>
-   )
-}

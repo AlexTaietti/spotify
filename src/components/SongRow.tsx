@@ -1,92 +1,9 @@
-import { SongData } from './PlaylistView';
-import { HeartIcon } from './HeartIcon';
-import { PlaystateIcon } from './PlaystateIcon';
 import styled from 'styled-components';
 import { usePlayback } from '../state/PlaybackContext';
 import { likeSongApi } from '../helpers/utils';
-
-const Row = styled.tr`
-
-   cursor: pointer;
-
-   td{
-
-      font-weight: 400;
-      padding: 15px 10px;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-      border-bottom: .5px solid #646464;
-      transition: background .3s;
-
-      img{
-         width: 100%;
-         display: block;
-      }
-
-      &:first-of-type{
-         
-         padding: 0 20px 0 24px;
-         border-top-left-radius: 10px;
-         border-bottom-left-radius: 10px;
-         border-bottom: none;
-
-         &:not(.show) img{
-            transition: opacity .3s;
-            opacity: 0;
-         }
-
-      }
-
-      &:nth-of-type(2){
-         
-         padding-left: 0 12px;
-
-         img{ max-height: 24px; }
-
-      }
-
-      &:last-of-type{
-         
-         position: relative;
-         overflow: visible;
-
-         &:after{
-            content: '';
-            transition: inherit;
-            position: absolute;
-            width: 8px;
-            height: 100%;
-            top: 0;
-            right: -8px;
-            border-top-right-radius: 10px;
-            border-bottom-right-radius: 10px;
-         }
-
-      }
-
-   }
-
-   &:hover{
-      
-      td {
-
-         background: rgba(29, 185, 84, 0.2);
-
-         &:first-of-type img{ opacity: 1; }
-
-         &::after{ background: rgba(29, 185, 84, 0.2); }
-      
-      }
-   
-   }
-
-`;
-
-type SongRowProps = {
-   song: SongData;
-   updateSong: (song: SongData) => void;
-};
+import { SongData } from './PlaylistView';
+import { HeartIcon } from './HeartIcon';
+import { PlaystateIcon } from './PlaystateIcon';
 
 export const SongRow: React.FC<SongRowProps> = ({ song, updateSong }: SongRowProps) => {
 
@@ -187,3 +104,86 @@ export const SongRow: React.FC<SongRowProps> = ({ song, updateSong }: SongRowPro
    );
 
 };
+
+type SongRowProps = {
+   song: SongData;
+   updateSong: (song: SongData) => void;
+};
+
+const Row = styled.tr`
+
+   cursor: pointer;
+
+   td{
+
+      font-weight: 400;
+      padding: 15px 10px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      border-bottom: .5px solid #646464;
+      transition: background .3s;
+
+      img{
+         width: 100%;
+         display: block;
+      }
+
+      &:first-of-type{
+         
+         padding: 0 20px 0 24px;
+         border-top-left-radius: 10px;
+         border-bottom-left-radius: 10px;
+         border-bottom: none;
+
+         &:not(.show) img{
+            transition: opacity .3s;
+            opacity: 0;
+         }
+
+      }
+
+      &:nth-of-type(2){
+         
+         padding-left: 0 12px;
+
+         img{ max-height: 24px; }
+
+      }
+
+      &:last-of-type{
+         
+         position: relative;
+         overflow: visible;
+
+         &:after{
+            content: '';
+            transition: inherit;
+            position: absolute;
+            width: 8px;
+            height: 100%;
+            top: 0;
+            right: -8px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+         }
+
+      }
+
+   }
+
+   &:hover{
+      
+      td {
+
+         background: rgba(29, 185, 84, 0.2);
+
+         &:first-of-type img{ opacity: 1; }
+
+         &::after{ background: rgba(29, 185, 84, 0.2); }
+      
+      }
+   
+   }
+
+`;

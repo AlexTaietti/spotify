@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Spoofify from './Spoofify';
+import { Spoofify } from './Spoofify';
 import { createGlobalStyle } from 'styled-components';
 
 import './style/global-font.css'; //keep @font-face in a separate file to avoid flickering in chrome (https://github.com/styled-components/styled-components/issues/2205)

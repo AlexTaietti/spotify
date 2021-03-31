@@ -1,5 +1,14 @@
-import React from 'react';
 import styled, { keyframes } from 'styled-components';
+
+export const Spinner: React.FC = () => {
+
+   return (
+      <SpinnerOuter>
+         <SpinnerInner />
+      </SpinnerOuter>
+   );
+
+};
 
 const rotateBack = keyframes`
   0%{ transform: rotateY(180deg); }
@@ -64,13 +73,3 @@ const SpinnerInner = styled.div`
    }
 
 `;
-
-export const Spinner: React.FC = () => {
-
-   return (
-      <SpinnerOuter>
-         <SpinnerInner />
-      </SpinnerOuter>
-   );
-
-};
