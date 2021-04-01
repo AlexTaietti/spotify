@@ -20,7 +20,7 @@ export const LikedSongsView: React.FC = () => {
             id: -1,
             name: "Liked Songs",
             songsNumber: likedTracks.liked_tracks.length
-         }
+         };
 
          setHeaderData(headerData);
 
