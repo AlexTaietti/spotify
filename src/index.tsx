@@ -9,9 +9,10 @@ const GlobalStyle = createGlobalStyle`
 
   :root{
     --main-text: #191414;
-    --secondary-text: #f2f7f1;
+    --secondary-text: #6d6d6d;
     --track-container-bg: #fff;
     --nav-container-bg: #fff;
+    --theme-toggle-bg: #6d6d6daa;
     --active-song-row-bg: #49d179;
     --main-bg: #f2f7f1;
     --selected-track-control: #c4c4c4;
@@ -27,28 +28,6 @@ const GlobalStyle = createGlobalStyle`
     --track-container-shadow-color: #f1f1f1;
     --value-bar-track-color: #C4C4C4;
     --value-bar-color: #191414;
-  }
-
-  .dark{
-    --main-text: #fff;
-    --secondary-text: #6d6d6d;
-    --track-container-bg: #000;
-    --nav-container-bg: #000;
-    --main-bg: #131313;
-    --active-nav-link-bg: #28b056;
-    --track-container-shadow-color: #222821;
-    --selected-track-control: #191414;
-    --idle-track-control: #c4c4c4;
-    --active-song-row-bg: #0e4521;
-    --disabled-carousel-control: #555;
-    --active-carousel-control: #fff;
-    --overlay-color: rgba(0, 0, 0, 0.3);
-    --overlay-text-color: #fff;
-    --scrollbar-track-color: #fafafa;
-    --scrollbar-thumb-color: #c1c1c1;
-    --songs-table-frame-color: #646464;
-    --value-bar-track-color: #596056;
-    --value-bar-color: #fff;
   }
 
   *, *::before, *::after{
