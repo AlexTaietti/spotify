@@ -27,13 +27,13 @@ const Bar = styled.div`
    border-radius: 11px;
    height: 6px;
    width: ${(props: BarProps) => props.width};
-   background: #C4C4C4;
+   background: var(--value-bar-track-color);
    cursor: pointer;
    overflow: hidden;
 
    &::after{
       content: '';
-      background: #191414;
+      background: var(--value-bar-color);
       border-radius: 11px;
       height: 100%;
       width: ${(props: BarProps) => props.value}%;

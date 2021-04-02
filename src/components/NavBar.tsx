@@ -17,9 +17,9 @@ export const NavBar: React.FC = () => {
             </Link>
          </LogoContainer>
          <Nav>
-            <NavItem exact={true} match={['/playlist/:playlistID', '/']} to='/' linkText='Home' SVGIconComponent={HomeIcon} />
-            <NavItem match={['/browse', '/genre/:genreID']} to='/browse' linkText='Browse' SVGIconComponent={BrowseIcon} />
-            <NavItem match={'/liked-songs'} to='/liked-songs' linkText='Liked Songs' SVGIconComponent={HeartIcon} />
+            <NavItem exact={true} match={['/playlist/:playlistID', '/']} to='/' linkText='Home' IconComponent={HomeIcon} />
+            <NavItem match={['/browse', '/genre/:genreID']} to='/browse' linkText='Browse' IconComponent={BrowseIcon} />
+            <NavItem match={'/liked-songs'} to='/liked-songs' linkText='Liked Songs' IconComponent={HeartIcon} />
          </Nav>
       </NavBarStyled>
    );
@@ -31,6 +31,7 @@ const NavBarStyled = styled.nav`
    grid-area: nav-bar;
    position: relative;
    padding: 50px 35px 10px 25px;
+   background: var(--nav-container-bg);
 
 `;
 

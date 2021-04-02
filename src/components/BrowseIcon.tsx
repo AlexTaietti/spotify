@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const BrowseIcon: React.FC = () => {
 
    return (
-      <i>
+      <Icon>
          <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 73.686092 61.498694">
@@ -22,7 +22,22 @@ export const BrowseIcon: React.FC = () => {
                   fill='none' strokeMiterlimit='4' />
             </g>
          </svg>
-      </i>
+      </Icon>
    );
 
 };
+
+const Icon = styled.i`
+
+   margin-right: 15px;
+   height: 18px;
+   width: 18px;
+
+   svg{
+      * {
+         fill: none;
+         stroke: var(--main-text);
+      }
+   }
+
+`;

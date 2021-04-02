@@ -139,7 +139,7 @@ const Progress = styled.div`
    span{
 
       display: inline-block;
-      color: #191414;
+      color: var(--main-text);
       font-size: 1.8rem;
       font-weight: 400;
 

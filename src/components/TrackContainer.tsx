@@ -163,6 +163,7 @@ const TrackWrapper = styled.footer`
    grid-area: track;
    display: block;
    position: relative;
-   box-shadow: 0 0 5px #f1f1f1;
+   box-shadow: 0 0 5px var(--track-container-shadow-color);
+   background: var(--track-container-bg);
    
 `;

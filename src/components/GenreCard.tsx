@@ -49,14 +49,14 @@ const Card = styled.div`
          width: 100%;
          top: 0;
          left: 0;
-         background: rgba(0, 0, 0, 0.3);
+         background: var(--overlay-color);
       }
 
       &::after{
          content: '${(props: CardProps) => props.name}';
          font-size: 3em;
          font-weight: 500;
-         color: white;
+         color: var(--overlay-text-color);
          position: absolute;
          top: 50%;
          left: 50%;

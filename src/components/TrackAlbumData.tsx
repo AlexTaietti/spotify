@@ -127,6 +127,7 @@ const AlbumDataContainer = styled.div`
       height: 100%;
       max-width: 160px;
       padding: 0 20px;
+      color: var(--main-text);
 
       span{
          white-space: nowrap;

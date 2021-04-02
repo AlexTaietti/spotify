@@ -32,7 +32,10 @@ const Icon = styled.i`
 
       width: 100%;
 
-      * { stroke: var(--big-text); }
+      circle, path{
+         fill: none;
+         stroke: var(--main-text);
+      }
    }
 
 `;

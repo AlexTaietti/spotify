@@ -24,6 +24,7 @@ const FilterInputWrapper = styled.div`
 
    input{
 
+      color: var(--main-text);
       background: none;
       font-weight: 300;
       font-size: 1.8rem;

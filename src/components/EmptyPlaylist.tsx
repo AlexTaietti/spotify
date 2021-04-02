@@ -22,7 +22,7 @@ const EmptyPlaylistMessage = styled.div`
    span{
       font-weight: 300;
       font-size: 5rem;
-      color: #191414;
+      color: var(--main-text);
    }
 
 `;

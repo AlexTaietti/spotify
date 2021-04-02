@@ -23,17 +23,17 @@ export const MainContainer: React.FC = () => {
 const Main = styled.main`
 
    grid-area: main;
-   background: #f2f7f1;
+   background: var(--main-bg);
    height: 100%;
    width: 100%;
    overflow-x: hidden;
 
    &::-webkit-scrollbar { width: 12px; }
 
-   &::-webkit-scrollbar-track { background: #fafafa; }
+   &::-webkit-scrollbar-track { background: var(--scrollbar-track-color); }
 
    &::-webkit-scrollbar-thumb {
-      background-color: #c1c1c1;
+      background-color: var(--scrollbar-thumb-color);
       border-radius: 20px;
    }
 

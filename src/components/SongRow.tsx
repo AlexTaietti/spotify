@@ -116,7 +116,7 @@ const Row = styled.tr`
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
-      border-bottom: .5px solid #646464;
+      border-bottom: .5px solid var(--songs-table-frame-color);
       transition: background .3s;
 
       img, svg{
@@ -171,11 +171,11 @@ const Row = styled.tr`
       
       td {
 
-         background: rgba(29, 185, 84, 0.2);
+         background: var(--active-song-row-bg);
 
          &:first-of-type svg{ opacity: 1; }
 
-         &::after{ background: rgba(29, 185, 84, 0.2); }
+         &::after{ background: var(--active-song-row-bg); }
       
       }
    

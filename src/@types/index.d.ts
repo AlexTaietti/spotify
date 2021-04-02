@@ -82,7 +82,7 @@ export type PlaylistTracksProps = {
 
 export type NavItemProps = {
    linkText: string;
-   SVGIconComponent: React.FC;
+   IconComponent: React.FC;
    to: string;
    exact?: boolean;
    match?: string | Array<string>;

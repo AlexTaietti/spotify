@@ -56,6 +56,7 @@ const CarouselContainer = styled.div`
    width: 100%;
 
    h1{
+      color: var(--main-text);
       margin-bottom: 25px;
       font-size: 2.8rem;
       font-weight: 400;
@@ -81,11 +82,11 @@ const Controls = styled.div`
    top: -40px;
    right: 0px;
    font-size: 3rem;
-   color: rgba(0, 0, 0, 0.4);
+   color: var(--disabled-carousel-control);
    cursor: pointer;
    user-select: none;
 
-   span.active{ color: rgba(0, 0, 0, 1); }
+   span.active{ color: var(--active-carousel-control); }
 
    span:last-of-type{ margin-left: 10px; }
 

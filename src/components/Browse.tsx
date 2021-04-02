@@ -34,7 +34,7 @@ const GenreContainer = styled.div`
    h1{
       font-weight: 400;
       font-size: 2.8rem;
-      color: #191414;
+      color: var(--main-text);
       margin-bottom: 35px;
    }
 

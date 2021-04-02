@@ -143,9 +143,8 @@ const Card = styled.div`
    white-space: normal;
    overflow: hidden;
 
-   a{ color: #191414; }
-
    h2{
+      color: var(--main-text);
       font-weight: normal;
       font-size: 1.8rem;
       line-height: 2rem;
@@ -153,7 +152,7 @@ const Card = styled.div`
    }
 
    p{
-      color: rgb(109, 109, 109);
+      color: var(--secondary-text);
       font-weight: normal;
       font-size: 1.4rem;
       line-height: 1.9rem;

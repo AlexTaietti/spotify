@@ -31,7 +31,7 @@ const SongsTable = styled.table`
    border-collapse: collapse;
    table-layout: fixed;
    font-size: 1.9rem;
-   color: #191414;
+   color: var(--main-text);
    margin-left: -70px; /* making up for the first "invisible" column and keeping the table centered */
 
 `;
@@ -43,7 +43,7 @@ const TableHeadings = styled.thead`
       text-transform: uppercase;
       font-weight: 300;
       padding: 8px 10px;
-      border-bottom: 1px solid #646464;
+      border-bottom: 1px solid var(--songs-table-frame-color);
       white-space: nowrap;
       width: 25%;
 
