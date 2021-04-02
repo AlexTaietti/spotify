@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-export const TablePlayIcon: React.FC = () => {
+export const PlayIcon: React.FC = () => {
 
    return (
-      <i>
+      <Icon>
          <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 104.32142 104.32142">
@@ -15,10 +15,10 @@ export const TablePlayIcon: React.FC = () => {
                   r="49.514877" />
                <path
                   strokeWidth='5.29166698' fill='none' strokeLinecap='round' strokeLinejoin='round' strokeMiterlimit='4'
-                  d="M 39.606819,73.76646 V 30.55496 L 76.637828,51.76788 Z" />
+                  d="M 41.760605,73.880522 V 30.440906 L 74.484019,51.76581 Z" />
             </g>
          </svg>
-      </i>
+      </Icon>
    );
 
 };
@@ -26,7 +26,10 @@ export const TablePlayIcon: React.FC = () => {
 const Icon = styled.i`
 
    svg{
-      stroke: var(--big-text);
+
+      width: 100%;
+
+      * { stroke: var(--big-text); }
    }
 
 `;

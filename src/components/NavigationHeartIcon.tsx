@@ -15,11 +15,3 @@ export const HeartIcon: React.FC = () => {
    );
 
 };
-
-const Icon = styled.i`
-
-   svg{
-      stroke: var(--big-text);
-   }
-
-`;

@@ -15,7 +15,7 @@
    version="1.1"
    id="svg2815"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="pause.svg">
+   sodipodi:docname="pause-done.svg">
   <defs
      id="defs2809" />
   <sodipodi:namedview
@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="-5.3646753"
+     inkscape:cx="12.492468"
      inkscape:cy="181.60181"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -59,14 +59,14 @@
        cy="52.160709"
        r="49.514877" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:6.35;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 38.93155,32.694933 v 38.93155"
+       style="fill:none;stroke:#000000;stroke-width:5.82083321;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 38.93155,32.694934 v 38.93155"
        id="path3376"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:6.35;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 65.76786,32.694933 v 38.93155"
+       style="fill:none;stroke:#000000;stroke-width:5.82083321;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 65.76786,32.694934 v 38.93155"
        id="path3378"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />

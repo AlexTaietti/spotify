@@ -7,6 +7,10 @@ import './style/global-font.css'; //keep @font-face in a separate file to avoid 
 
 const GlobalStyle = createGlobalStyle`
 
+  :root{
+    --big-text: black;
+  }
+
   *, *::before, *::after{
     box-sizing: border-box;
     margin: 0;

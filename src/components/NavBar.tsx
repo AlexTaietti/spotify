@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import sprinttLogo from '../assets/images/sprintt_logo.png';
-import homeIcon from '../assets/images/ui_icons/home_icon.png';
-import browseIcon from '../assets/images/ui_icons/browse_icon.png';
-import LikedIcon from '../assets/images/ui_icons/liked_songs_icon.png';
 import { NavItem } from './NavItem';
+import { HomeIcon } from './HomeIcon';
+import { BrowseIcon } from './BrowseIcon';
+import { HeartIcon } from './NavigationHeartIcon';
+
 
 export const NavBar: React.FC = () => {
 
@@ -16,9 +17,9 @@ export const NavBar: React.FC = () => {
             </Link>
          </LogoContainer>
          <Nav>
-            <NavItem exact={true} match={['/playlist/:playlistID', '/']} to='/' linkText='Home' iconAlt='home icon' icon={homeIcon} />
-            <NavItem match={['/browse', '/genre/:genreID']} to='/browse' linkText='Browse' iconAlt='browse icon' icon={browseIcon} />
-            <NavItem match={'/liked-songs'} to='/liked-songs' linkText='Liked Songs' iconAlt='Liked songs icon' icon={LikedIcon} />
+            <NavItem exact={true} match={['/playlist/:playlistID', '/']} to='/' linkText='Home' SVGIconComponent={HomeIcon} />
+            <NavItem match={['/browse', '/genre/:genreID']} to='/browse' linkText='Browse' SVGIconComponent={BrowseIcon} />
+            <NavItem match={'/liked-songs'} to='/liked-songs' linkText='Liked Songs' SVGIconComponent={HeartIcon} />
          </Nav>
       </NavBarStyled>
    );

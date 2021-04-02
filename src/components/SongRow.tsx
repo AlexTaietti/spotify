@@ -119,7 +119,7 @@ const Row = styled.tr`
       border-bottom: .5px solid #646464;
       transition: background .3s;
 
-      img{
+      img, svg{
          width: 100%;
          display: block;
       }
@@ -131,7 +131,7 @@ const Row = styled.tr`
          border-bottom-left-radius: 10px;
          border-bottom: none;
 
-         &:not(.show) img{
+         &:not(.show) svg{
             transition: opacity .3s;
             opacity: 0;
          }
@@ -173,7 +173,7 @@ const Row = styled.tr`
 
          background: rgba(29, 185, 84, 0.2);
 
-         &:first-of-type img{ opacity: 1; }
+         &:first-of-type svg{ opacity: 1; }
 
          &::after{ background: rgba(29, 185, 84, 0.2); }
       

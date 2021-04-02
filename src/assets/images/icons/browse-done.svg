@@ -9,13 +9,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="278.07452"
-   height="228.03702"
-   viewBox="0 0 73.573881 60.334795"
+   width="278.49863"
+   height="232.436"
+   viewBox="0 0 73.686092 61.498694"
    version="1.1"
    id="svg877"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="browse.svg">
+   sodipodi:docname="browse-done.svg">
   <defs
      id="defs871" />
   <sodipodi:namedview
@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="114.2945"
-     inkscape:cy="66.520523"
+     inkscape:cx="126.92141"
+     inkscape:cy="228.14493"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -45,7 +45,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -54,24 +54,24 @@
      inkscape:groupmode="layer"
      id="layer1">
     <g
-       id="g1476">
+       id="g4619">
       <path
          sodipodi:nodetypes="ccccc"
          inkscape:connector-curvature="0"
          id="path1424"
-         d="M 1.1113588,7.2462585 10.577355,59.406969 h 52.555484 l 9.44239,-52.1607105 z"
+         d="m 1.1113588,8.410157 9.4659962,52.16071 h 52.555484 l 9.44239,-52.16071 z"
          style="fill:none;stroke:#000000;stroke-width:1.85564947;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
          sodipodi:nodetypes="cc"
          inkscape:transform-center-x="0.42071593"
          inkscape:connector-curvature="0"
          id="path1428"
-         d="m 10.565275,1.1984595 52.555485,0.02414"
-         style="fill:none;stroke:#000000;stroke-width:2.05201912;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         d="m 10.565275,1.0260104 52.555485,0.02414"
+         style="fill:none;stroke:#000000;stroke-width:2.05201912;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <ellipse
          ry="11.376122"
          rx="11.407397"
-         cy="32.872402"
+         cy="34.036301"
          cx="36.843018"
          id="path1430"
          style="opacity:0.93999999;fill:none;stroke:#000000;stroke-width:2.80556822;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />

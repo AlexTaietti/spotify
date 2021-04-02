@@ -2,7 +2,7 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import styled from 'styled-components';
 import { NavItemProps } from '../@types';
 
-export const NavItem: React.FC<NavItemProps> = ({ match, linkText, to, icon, iconAlt, exact = false }) => {
+export const NavItem: React.FC<NavItemProps> = ({ match, linkText, to, SVGIconComponent, exact = false }) => {
 
    const urlMatch = useRouteMatch({
       path: match,
@@ -12,7 +12,7 @@ export const NavItem: React.FC<NavItemProps> = ({ match, linkText, to, icon, ico
    return (
       <Item>
          <Link className={urlMatch ? "active" : 'default'} to={to}>
-            <i><img alt={iconAlt} src={icon} /></i>
+            <SVGIconComponent />
             <span>{linkText}</span>
          </Link>
       </Item>
@@ -34,7 +34,16 @@ const Item = styled.li`
       font-weight: lighter;
       align-items: center;
 
-      i{ margin-right: 15px; }
+      i{
+         margin-right: 15px;
+         height: 18px;
+         width: 18px;
+
+         svg{
+            * { stroke: var(--big-text); }
+         }
+
+      }
 
       img{
          display: block;

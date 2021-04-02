@@ -9,13 +9,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="314.17969"
-   height="354.80392"
-   viewBox="0 0 83.126707 93.875208"
+   width="314.1792"
+   height="324.20166"
+   viewBox="0 0 83.126578 85.778359"
    version="1.1"
    id="svg2911"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="home.svg">
+   sodipodi:docname="home-done.svg">
   <defs
      id="defs2905" />
   <sodipodi:namedview
@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="17.022373"
-     inkscape:cy="137.50236"
+     inkscape:cx="-488.16469"
+     inkscape:cy="137.50212"
      inkscape:document-units="px"
      inkscape:current-layer="svg2911"
      showgrid="false"
@@ -59,7 +59,7 @@
        sodipodi:nodetypes="cccccccccc"
        inkscape:connector-curvature="0"
        id="path3456"
-       d="m 3.201786,42.292459 v 48.38096 h 27.779065 v -26.45833 h 22.487814 v 26.45833 H 79.924921 V 42.292459 L 41.563354,4.494849 Z"
-       style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:6.40357208;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+       d="m 3.201786,34.195674 v 48.38096 h 27.779065 v -26.45833 h 22.487814 v 26.45833 H 79.924921 V 34.195674 L 41.563353,3.2016351 Z"
+       style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:6.40344572;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:3.5999999;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
   </g>
 </svg>

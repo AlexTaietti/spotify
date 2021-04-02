@@ -1,6 +1,6 @@
 ////////////////
 // type utils //
-////////////////
+///////////////
 type KeysMatching<T, V> = { [K in keyof T]: T[K] extends V ? K : never }[keyof T];
 
 
@@ -82,8 +82,7 @@ export type PlaylistTracksProps = {
 
 export type NavItemProps = {
    linkText: string;
-   icon: string;
-   iconAlt: string;
+   SVGIconComponent: React.FC;
    to: string;
    exact?: boolean;
    match?: string | Array<string>;
