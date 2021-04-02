@@ -76,16 +76,27 @@ export const PlaylistTracks: React.FC<PlaylistTracksProps> = ({ headerData, trac
 
    return (
 
+      (headerData && state?.displayTracks) ?
 
-      (headerData && state?.displayTracks && state?.displayTracks.length) ?
+         (state?.displayTracks?.length === 0) ?
 
-         <PlaylistViewWrapper>
-            <SectionHeader imageUrl={headerData.image} name={headerData.name} description={headerData.description} songNumber={headerData.songsNumber} duration={headerData.duration} />
-            <SongsSection>
-               <Filter setFilter={setFilter} />
-               <Songs updateSong={updateSong} songs={state.displayTracks} />
-            </SongsSection>
-         </PlaylistViewWrapper> : ((state?.displayTracks?.length === 0) ? <EmptyPlaylist message={onEmpty} /> : null)
+            filter ?
+
+               <PlaylistViewWrapper>
+                  <SectionHeader imageUrl={headerData.image} name={headerData.name} description={headerData.description} songNumber={headerData.songsNumber} duration={headerData.duration} />
+                  <SongsSection>
+                     <Filter setFilter={setFilter} />
+                     <Songs updateSong={updateSong} songs={state.displayTracks} />
+                  </SongsSection>
+               </PlaylistViewWrapper> : <EmptyPlaylist message={onEmpty} /> :
+
+            <PlaylistViewWrapper>
+               <SectionHeader imageUrl={headerData.image} name={headerData.name} description={headerData.description} songNumber={headerData.songsNumber} duration={headerData.duration} />
+               <SongsSection>
+                  <Filter setFilter={setFilter} />
+                  <Songs updateSong={updateSong} songs={state.displayTracks} />
+               </SongsSection>
+            </PlaylistViewWrapper> : null
 
    );
 
