@@ -11,4 +11,4 @@
 <p align="center"><img src="./preview/liked_songs_view.png" width="60%"/></p>
 
 ___
-To see it live either visit https://sprintt-music.netlify.app/ or clone the repo, `cd` into it, install the deps with `yarn install` and finally run `yarn start`.
+To see it live visit https://sprintt-music.netlify.app/.
