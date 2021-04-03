@@ -37,12 +37,12 @@ const AppWrapper = styled.div`
   &.dark{
     --main-text: #fff;
     --secondary-text: #6d6d6d;
-    --track-container-bg: #000;
+    --track-container-bg: #191414;
     --theme-toggle-bg: #fafafaaa;
-    --nav-container-bg: #000;
-    --main-bg: #131313;
+    --nav-container-bg: #191414;
+    --main-bg: #222;
     --active-nav-link-bg: #28b056;
-    --track-container-shadow-color: #222821;
+    --track-container-shadow-color: #222921;
     --selected-track-control: #191414;
     --idle-track-control: #c4c4c4;
     --active-song-row-bg: #0e4521;
