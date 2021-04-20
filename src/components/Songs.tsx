@@ -5,24 +5,40 @@ import { SongRow } from './SongRow';
 export const Songs: React.FC<SongsProps> = ({ songs, updateSong }) => {
 
    return (
-      <SongsTable>
-         <TableHeadings>
-            <tr>
-               <th>{ /* playstate icon column header */}</th>
-               <th>{ /* heart icon column header */}</th>
-               <th>title</th>
-               <th>artist</th>
-               <th>album</th>
-               <th>release date</th>
-            </tr>
-         </TableHeadings>
-         <tbody>
-            {songs.map(song => <SongRow updateSong={updateSong} key={song.track_id} song={song} />)}
-         </tbody>
-      </SongsTable>
+
+      songs.length ?
+
+         <SongsTable>
+            <TableHeadings>
+               <tr>
+                  <th>{ /* playstate icon column header */}</th>
+                  <th>{ /* heart icon column header */}</th>
+                  <th>title</th>
+                  <th>artist</th>
+                  <th>album</th>
+                  <th>release date</th>
+               </tr>
+            </TableHeadings>
+            <tbody>
+               {songs.map(song => <SongRow updateSong={updateSong} key={song.track_id} song={song} />)}
+            </tbody>
+         </SongsTable>
+
+         :
+
+         <NoMatchMessage>No match found</NoMatchMessage>
+
    );
 
 };
+
+const NoMatchMessage = styled.p`
+
+   font-size: 1.8rem;
+   margin-top: 20px;
+   text-align: center;
+
+`;
 
 const SongsTable = styled.table`
 
