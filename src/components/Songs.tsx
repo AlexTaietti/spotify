@@ -37,6 +37,7 @@ const NoMatchMessage = styled.p`
    font-size: 1.8rem;
    margin-top: 20px;
    text-align: center;
+   color: var(--main-text);
 
 `;
 
